@@ -36,6 +36,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "../../node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
+/* harmony import */ var _create_player_create_player_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./create-player/create-player.component */ "./src/app/create-player/create-player.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -45,10 +46,15 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var routes = [
     {
         path: '',
         component: _home_home_component__WEBPACK_IMPORTED_MODULE_2__["HomeComponent"]
+    },
+    {
+        path: 'create-player',
+        component: _create_player_create_player_component__WEBPACK_IMPORTED_MODULE_3__["CreatePlayerComponent"]
     },
     { path: '**', redirectTo: '/' }
 ];
@@ -75,7 +81,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--suppress HtmlUnknownAnchorTarget -->\r\n<mat-sidenav-container class=\"sidenav-container\">\r\n  <mat-sidenav #drawer\r\n               class=\"sidenav\"\r\n               fixedInViewport=\"true\"\r\n               [attr.role]=\"isHandset ? 'dialog' : 'navigation'\"\r\n               [mode]=\"isHandset ? 'over' : 'side'\"\r\n               [opened]=\"!isHandset\">\r\n    <mat-toolbar color=\"primary\">Menu</mat-toolbar>\r\n    <mat-nav-list>\r\n      <a routerLink=\"/\"\r\n         routerLinkActive=\"active\"\r\n         mat-list-item\r\n         (click)=\"closeDrawer()\">Accueil</a>\r\n      <a routerLink=\"/characteristics\"\r\n         routerLinkActive=\"active\"\r\n         mat-list-item\r\n         (click)=\"closeDrawer()\">Characteristics</a>\r\n      <a routerLink=\"/actions\"\r\n         routerLinkActive=\"active\"\r\n         mat-list-item\r\n         (click)=\"closeDrawer()\">Actions</a>\r\n    </mat-nav-list>\r\n  </mat-sidenav>\r\n\r\n  <mat-sidenav-content>\r\n    <mat-toolbar color=\"primary\">\r\n      <button *ngIf=\"isHandset\"\r\n              type=\"button\"\r\n              aria-label=\"Toggle sidenav\"\r\n              mat-icon-button\r\n              (click)=\"drawer.toggle()\">\r\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\r\n      </button>\r\n    </mat-toolbar>\r\n\r\n    <div class=\"page_content\">\r\n      <router-outlet></router-outlet>\r\n    </div>\r\n\r\n  </mat-sidenav-content>\r\n</mat-sidenav-container>\r\n"
+module.exports = "<!--suppress HtmlUnknownAnchorTarget -->\r\n<mat-sidenav-container class=\"sidenav-container\">\r\n  <mat-sidenav #drawer\r\n               class=\"sidenav\"\r\n               fixedInViewport=\"true\"\r\n               [attr.role]=\"isHandset ? 'dialog' : 'navigation'\"\r\n               [mode]=\"isHandset ? 'over' : 'side'\"\r\n               [opened]=\"!isHandset\">\r\n    <mat-toolbar color=\"primary\">Menu</mat-toolbar>\r\n    <mat-nav-list>\r\n      <a routerLink=\"/\"\r\n         routerLinkActive=\"active\"\r\n         mat-list-item\r\n         (click)=\"closeDrawer()\">Accueil</a>\r\n      <a routerLink=\"/create-player\"\r\n         routerLinkActive=\"active\"\r\n         mat-list-item\r\n         (click)=\"closeDrawer()\">Créer un personnage</a>\r\n    </mat-nav-list>\r\n  </mat-sidenav>\r\n\r\n  <mat-sidenav-content>\r\n    <mat-toolbar color=\"primary\">\r\n      <button *ngIf=\"isHandset\"\r\n              type=\"button\"\r\n              aria-label=\"Toggle sidenav\"\r\n              mat-icon-button\r\n              (click)=\"drawer.toggle()\">\r\n        <mat-icon aria-label=\"Side nav toggle icon\">menu</mat-icon>\r\n      </button>\r\n    </mat-toolbar>\r\n\r\n    <div class=\"page_content\">\r\n      <router-outlet></router-outlet>\r\n    </div>\r\n\r\n  </mat-sidenav-content>\r\n</mat-sidenav-container>\r\n"
 
 /***/ }),
 
@@ -86,7 +92,7 @@ module.exports = "<!--suppress HtmlUnknownAnchorTarget -->\r\n<mat-sidenav-conta
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".mat-sidenav-container {\n  height: 100%; }\n  .mat-sidenav-container .mat-drawer-side {\n    border-right: 0; }\n  .mat-sidenav-container .page_content {\n    padding: 10px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9kdW5nZW9uLWRyYWdvbnMtY2xpZW50L3NyYy9hcHAvRDpcXERldi1Qcm9ncmFtc1xcZHVuZ2Vvbi1kcmFnb25zLWNsaWVudC9hcHBcXGR1bmdlb24tZHJhZ29ucy1jbGllbnRcXHNyY1xcYXBwXFxhcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxZQUFZLEVBQUE7RUFEZDtJQUlJLGVBQWUsRUFBQTtFQUpuQjtJQVFJLGFBQWEsRUFBQSIsImZpbGUiOiJhcHAvZHVuZ2Vvbi1kcmFnb25zLWNsaWVudC9zcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYXQtc2lkZW5hdi1jb250YWluZXIge1xyXG4gIGhlaWdodDogMTAwJTtcclxuXHJcbiAgLm1hdC1kcmF3ZXItc2lkZSB7XHJcbiAgICBib3JkZXItcmlnaHQ6IDA7XHJcbiAgfVxyXG5cclxuICAucGFnZV9jb250ZW50IHtcclxuICAgIHBhZGRpbmc6IDEwcHg7XHJcbiAgfVxyXG59XHJcbiJdfQ== */"
+module.exports = ".mat-sidenav-container {\n  height: 100%; }\n  .mat-sidenav-container .mat-drawer-side, .mat-sidenav-container .mat-drawer-over {\n    border-right: 0;\n    width: 256px; }\n  .mat-sidenav-container .page_content {\n    padding: 10px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9kdW5nZW9uLWRyYWdvbnMtY2xpZW50L3NyYy9hcHAvRDpcXERldi1Qcm9ncmFtc1xcZHVuZ2Vvbi1kcmFnb25zLWNsaWVudC9hcHBcXGR1bmdlb24tZHJhZ29ucy1jbGllbnRcXHNyY1xcYXBwXFxhcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxZQUFZLEVBQUE7RUFEZDtJQUlJLGVBQWU7SUFDZixZQUFZLEVBQUE7RUFMaEI7SUFTSSxhQUFhLEVBQUEiLCJmaWxlIjoiYXBwL2R1bmdlb24tZHJhZ29ucy1jbGllbnQvc3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubWF0LXNpZGVuYXYtY29udGFpbmVyIHtcclxuICBoZWlnaHQ6IDEwMCU7XHJcblxyXG4gIC5tYXQtZHJhd2VyLXNpZGUsIC5tYXQtZHJhd2VyLW92ZXIge1xyXG4gICAgYm9yZGVyLXJpZ2h0OiAwO1xyXG4gICAgd2lkdGg6IDI1NnB4O1xyXG4gIH1cclxuXHJcbiAgLnBhZ2VfY29udGVudCB7XHJcbiAgICBwYWRkaW5nOiAxMHB4O1xyXG4gIH1cclxufVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -190,6 +196,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_store__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./shared/store */ "./src/app/shared/store/index.ts");
 /* harmony import */ var _home_home_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./home/home.module */ "./src/app/home/home.module.ts");
 /* harmony import */ var _shared_store_player_store_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./shared/store/player-store.module */ "./src/app/shared/store/player-store.module.ts");
+/* harmony import */ var _create_player_create_player_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./create-player/create-player.module */ "./src/app/create-player/create-player.module.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -207,7 +214,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-var appModules = [_home_home_module__WEBPACK_IMPORTED_MODULE_9__["HomeModule"]];
+
+var appModules = [_home_home_module__WEBPACK_IMPORTED_MODULE_9__["HomeModule"], _create_player_create_player_module__WEBPACK_IMPORTED_MODULE_11__["CreatePlayerModule"]];
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -238,6 +246,140 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/create-player/create-player.component.html":
+/*!************************************************************!*\
+  !*** ./src/app/create-player/create-player.component.html ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<form [formGroup]=\"createPlayerForm\"\n      (ngSubmit)=\"createPlayer()\"\n      fxLayout=\"row\">\n  <mat-form-field fxFlex=\"80\">\n    <input matInput\n           placeholder=\"Nom du personnage\"\n           formControlName=\"name\">\n  </mat-form-field>\n\n  <div fxFlex>\n    <button mat-button\n            type=\"submit\"\n            color=\"primary\"\n            [disabled]=\"createPlayerForm.invalid\"\n            fxFlex>Submit\n    </button>\n  </div>\n</form>\n"
+
+/***/ }),
+
+/***/ "./src/app/create-player/create-player.component.scss":
+/*!************************************************************!*\
+  !*** ./src/app/create-player/create-player.component.scss ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvZHVuZ2Vvbi1kcmFnb25zLWNsaWVudC9zcmMvYXBwL2NyZWF0ZS1wbGF5ZXIvY3JlYXRlLXBsYXllci5jb21wb25lbnQuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/create-player/create-player.component.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/create-player/create-player.component.ts ***!
+  \**********************************************************/
+/*! exports provided: CreatePlayerComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreatePlayerComponent", function() { return CreatePlayerComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "../../node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _shared_store_player_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/store/player.actions */ "./src/app/shared/store/player.actions.ts");
+/* harmony import */ var _ngxs_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngxs/store */ "../../node_modules/@ngxs/store/fesm5/ngxs-store.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var CreatePlayerComponent = /** @class */ (function () {
+    function CreatePlayerComponent(store, formBuilder) {
+        this.store = store;
+        this.createPlayerForm = formBuilder.group({
+            name: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]]
+        });
+    }
+    CreatePlayerComponent.prototype.createPlayer = function () {
+        this.store.dispatch(new _shared_store_player_actions__WEBPACK_IMPORTED_MODULE_2__["CreatePlayer"](this.createPlayerForm.getRawValue()));
+    };
+    CreatePlayerComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'dd-create-player',
+            template: __webpack_require__(/*! ./create-player.component.html */ "./src/app/create-player/create-player.component.html"),
+            styles: [__webpack_require__(/*! ./create-player.component.scss */ "./src/app/create-player/create-player.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_ngxs_store__WEBPACK_IMPORTED_MODULE_3__["Store"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]])
+    ], CreatePlayerComponent);
+    return CreatePlayerComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/create-player/create-player.module.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/create-player/create-player.module.ts ***!
+  \*******************************************************/
+/*! exports provided: CreatePlayerModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreatePlayerModule", function() { return CreatePlayerModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "../../node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser/animations */ "../../node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "../../node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "../../node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _ngxs_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngxs/store */ "../../node_modules/@ngxs/store/fesm5/ngxs-store.js");
+/* harmony import */ var _shared_store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../shared/store */ "./src/app/shared/store/index.ts");
+/* harmony import */ var _angular_flex_layout__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/flex-layout */ "../../node_modules/@angular/flex-layout/esm5/flex-layout.es5.js");
+/* harmony import */ var _create_player_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./create-player.component */ "./src/app/create-player/create-player.component.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+
+
+var CreatePlayerModule = /** @class */ (function () {
+    function CreatePlayerModule() {
+    }
+    CreatePlayerModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
+            declarations: [_create_player_component__WEBPACK_IMPORTED_MODULE_8__["CreatePlayerComponent"]],
+            imports: [
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_2__["BrowserAnimationsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
+                _angular_flex_layout__WEBPACK_IMPORTED_MODULE_7__["FlexLayoutModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatButtonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatIconModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatInputModule"],
+                _ngxs_store__WEBPACK_IMPORTED_MODULE_5__["NgxsModule"].forFeature([_shared_store__WEBPACK_IMPORTED_MODULE_6__["PlayerState"]])
+            ]
+        })
+    ], CreatePlayerModule);
+    return CreatePlayerModule;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/home/home.component.html":
 /*!******************************************!*\
   !*** ./src/app/home/home.component.html ***!
@@ -245,7 +387,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"createPlayerForm\"\r\n      (ngSubmit)=\"createPlayer()\"\r\n      fxLayout=\"row\">\r\n  <mat-form-field fxFlex=\"80\">\r\n    <input matInput\r\n           placeholder=\"Name\"\r\n           formControlName=\"name\">\r\n  </mat-form-field>\r\n\r\n  <div fxFlex>\r\n    <button mat-button\r\n            type=\"submit\"\r\n            color=\"primary\"\r\n            [disabled]=\"createPlayerForm.invalid\"\r\n            fxFlex>Submit\r\n    </button>\r\n  </div>\r\n</form>\r\n\r\n<mat-list>\r\n  <mat-list-item *ngFor=\"let player of players$ | async\">{{ player.name }}</mat-list-item>\r\n</mat-list>\r\n"
+module.exports = "<mat-list>\r\n  <mat-list-item *ngFor=\"let player of players$ | async\">{{ player.name }}</mat-list-item>\r\n</mat-list>\r\n"
 
 /***/ }),
 
@@ -271,11 +413,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "../../node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _ngxs_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngxs/store */ "../../node_modules/@ngxs/store/fesm5/ngxs-store.js");
-/* harmony import */ var _shared_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/store */ "./src/app/shared/store/index.ts");
-/* harmony import */ var _shared_store_player_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shared/store/player.actions */ "./src/app/shared/store/player.actions.ts");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "../../node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _ngxs_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ngxs/store */ "../../node_modules/@ngxs/store/fesm5/ngxs-store.js");
+/* harmony import */ var _shared_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/store */ "./src/app/shared/store/index.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "../../node_modules/rxjs/_esm5/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -289,33 +429,19 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
-
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(store, formBuilder) {
-        this.store = store;
-        this.createPlayerForm = formBuilder.group({
-            name: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]]
-        });
+    function HomeComponent() {
     }
-    HomeComponent.prototype.createPlayer = function () {
-        this.store.dispatch(new _shared_store_player_actions__WEBPACK_IMPORTED_MODULE_4__["CreatePlayer"](this.createPlayerForm.getRawValue()));
-    };
-    HomeComponent.prototype.fetchPlayers = function () {
-        this.store.dispatch(new _shared_store_player_actions__WEBPACK_IMPORTED_MODULE_4__["FetchPlayers"]());
-    };
     __decorate([
-        Object(_ngxs_store__WEBPACK_IMPORTED_MODULE_2__["Select"])(_shared_store__WEBPACK_IMPORTED_MODULE_3__["PlayerState"].players),
-        __metadata("design:type", rxjs__WEBPACK_IMPORTED_MODULE_5__["Observable"])
+        Object(_ngxs_store__WEBPACK_IMPORTED_MODULE_1__["Select"])(_shared_store__WEBPACK_IMPORTED_MODULE_2__["PlayerState"].players),
+        __metadata("design:type", rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"])
     ], HomeComponent.prototype, "players$", void 0);
     HomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'dd-home',
             template: __webpack_require__(/*! ./home.component.html */ "./src/app/home/home.component.html"),
             styles: [__webpack_require__(/*! ./home.component.scss */ "./src/app/home/home.component.scss")]
-        }),
-        __metadata("design:paramtypes", [_ngxs_store__WEBPACK_IMPORTED_MODULE_2__["Store"],
-            _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]])
+        })
     ], HomeComponent);
     return HomeComponent;
 }());
