@@ -35,8 +35,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppRoutingModule", function() { return AppRoutingModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "../../node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
-/* harmony import */ var _create_player_create_player_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./create-player/create-player.component */ "./src/app/create-player/create-player.component.ts");
+/* harmony import */ var _create_player_create_player_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./create-player/create-player.component */ "./src/app/create-player/create-player.component.ts");
+/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
+/* harmony import */ var _playersheet_player_resolver__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./playersheet/player.resolver */ "./src/app/playersheet/player.resolver.ts");
+/* harmony import */ var _playersheet_playersheet_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./playersheet/playersheet.component */ "./src/app/playersheet/playersheet.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -47,14 +49,23 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
 var routes = [
     {
         path: '',
-        component: _home_home_component__WEBPACK_IMPORTED_MODULE_2__["HomeComponent"]
+        component: _home_home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"]
     },
     {
         path: 'create-player',
-        component: _create_player_create_player_component__WEBPACK_IMPORTED_MODULE_3__["CreatePlayerComponent"]
+        component: _create_player_create_player_component__WEBPACK_IMPORTED_MODULE_2__["CreatePlayerComponent"]
+    },
+    {
+        path: 'player/:playerId',
+        component: _playersheet_playersheet_component__WEBPACK_IMPORTED_MODULE_5__["PlayersheetComponent"],
+        resolve: {
+            player: _playersheet_player_resolver__WEBPACK_IMPORTED_MODULE_4__["PlayerResolver"]
+        }
     },
     { path: '**', redirectTo: '/' }
 ];
@@ -92,7 +103,7 @@ module.exports = "<!--suppress HtmlUnknownAnchorTarget -->\r\n<mat-sidenav-conta
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".mat-sidenav-container {\n  height: 100%; }\n  .mat-sidenav-container .mat-drawer-side, .mat-sidenav-container .mat-drawer-over {\n    border-right: 0;\n    width: 256px; }\n  .mat-sidenav-container .page_content {\n    padding: 10px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9kdW5nZW9uLWRyYWdvbnMtY2xpZW50L3NyYy9hcHAvRDpcXERldi1Qcm9ncmFtc1xcZHVuZ2Vvbi1kcmFnb25zLWNsaWVudC9hcHBcXGR1bmdlb24tZHJhZ29ucy1jbGllbnRcXHNyY1xcYXBwXFxhcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxZQUFZLEVBQUE7RUFEZDtJQUlJLGVBQWU7SUFDZixZQUFZLEVBQUE7RUFMaEI7SUFTSSxhQUFhLEVBQUEiLCJmaWxlIjoiYXBwL2R1bmdlb24tZHJhZ29ucy1jbGllbnQvc3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubWF0LXNpZGVuYXYtY29udGFpbmVyIHtcclxuICBoZWlnaHQ6IDEwMCU7XHJcblxyXG4gIC5tYXQtZHJhd2VyLXNpZGUsIC5tYXQtZHJhd2VyLW92ZXIge1xyXG4gICAgYm9yZGVyLXJpZ2h0OiAwO1xyXG4gICAgd2lkdGg6IDI1NnB4O1xyXG4gIH1cclxuXHJcbiAgLnBhZ2VfY29udGVudCB7XHJcbiAgICBwYWRkaW5nOiAxMHB4O1xyXG4gIH1cclxufVxyXG4iXX0= */"
+module.exports = ".mat-sidenav-container {\n  height: 100%; }\n  .mat-sidenav-container .mat-drawer-side, .mat-sidenav-container .mat-drawer-over {\n    border-right: 0;\n    width: 256px; }\n  .mat-sidenav-container .page_content {\n    padding: 10px 16px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9kdW5nZW9uLWRyYWdvbnMtY2xpZW50L3NyYy9hcHAvQzpcXFVzZXJzXFxuaWNvbGFzY1xcUFJPSkVUU1xcZHVuZ2Vvbi1kcmFnb25zLWNsaWVudC9hcHBcXGR1bmdlb24tZHJhZ29ucy1jbGllbnRcXHNyY1xcYXBwXFxhcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxZQUFZLEVBQUE7RUFEZDtJQUlJLGVBQWU7SUFDZixZQUFZLEVBQUE7RUFMaEI7SUFTSSxrQkFBa0IsRUFBQSIsImZpbGUiOiJhcHAvZHVuZ2Vvbi1kcmFnb25zLWNsaWVudC9zcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYXQtc2lkZW5hdi1jb250YWluZXIge1xyXG4gIGhlaWdodDogMTAwJTtcclxuXHJcbiAgLm1hdC1kcmF3ZXItc2lkZSwgLm1hdC1kcmF3ZXItb3ZlciB7XHJcbiAgICBib3JkZXItcmlnaHQ6IDA7XHJcbiAgICB3aWR0aDogMjU2cHg7XHJcbiAgfVxyXG5cclxuICAucGFnZV9jb250ZW50IHtcclxuICAgIHBhZGRpbmc6IDEwcHggMTZweDtcclxuICB9XHJcbn1cclxuIl19 */"
 
 /***/ }),
 
@@ -193,10 +204,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ngxs_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngxs/store */ "../../node_modules/@ngxs/store/fesm5/ngxs-store.js");
 /* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _shared_store__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./shared/store */ "./src/app/shared/store/index.ts");
+/* harmony import */ var _create_player_create_player_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./create-player/create-player.module */ "./src/app/create-player/create-player.module.ts");
 /* harmony import */ var _home_home_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./home/home.module */ "./src/app/home/home.module.ts");
-/* harmony import */ var _shared_store_player_store_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./shared/store/player-store.module */ "./src/app/shared/store/player-store.module.ts");
-/* harmony import */ var _create_player_create_player_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./create-player/create-player.module */ "./src/app/create-player/create-player.module.ts");
+/* harmony import */ var _playersheet_playersheet_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./playersheet/playersheet.module */ "./src/app/playersheet/playersheet.module.ts");
+/* harmony import */ var _shared_store__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./shared/store */ "./src/app/shared/store/index.ts");
+/* harmony import */ var _shared_store_player_store_module__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./shared/store/player-store.module */ "./src/app/shared/store/player-store.module.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -215,7 +227,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-var appModules = [_home_home_module__WEBPACK_IMPORTED_MODULE_9__["HomeModule"], _create_player_create_player_module__WEBPACK_IMPORTED_MODULE_11__["CreatePlayerModule"]];
+
+var appModules = [_home_home_module__WEBPACK_IMPORTED_MODULE_9__["HomeModule"], _create_player_create_player_module__WEBPACK_IMPORTED_MODULE_8__["CreatePlayerModule"], _playersheet_playersheet_module__WEBPACK_IMPORTED_MODULE_10__["PlayersheetModule"]];
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -231,9 +244,9 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatListModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSidenavModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatToolbarModule"],
-                _ngxs_store__WEBPACK_IMPORTED_MODULE_5__["NgxsModule"].forRoot([_shared_store__WEBPACK_IMPORTED_MODULE_8__["PlayerState"]]),
+                _ngxs_store__WEBPACK_IMPORTED_MODULE_5__["NgxsModule"].forRoot([_shared_store__WEBPACK_IMPORTED_MODULE_11__["PlayerState"]]),
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_6__["AppRoutingModule"],
-                _shared_store_player_store_module__WEBPACK_IMPORTED_MODULE_10__["PlayerStoreModule"]
+                _shared_store_player_store_module__WEBPACK_IMPORTED_MODULE_12__["PlayerStoreModule"]
             ].concat(appModules),
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
@@ -253,7 +266,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"createPlayerForm\"\n      (ngSubmit)=\"createPlayer()\"\n      fxLayout=\"row\">\n  <mat-form-field fxFlex=\"80\">\n    <input matInput\n           placeholder=\"Nom du personnage\"\n           formControlName=\"name\">\n  </mat-form-field>\n\n  <div fxFlex>\n    <button mat-button\n            type=\"submit\"\n            color=\"primary\"\n            [disabled]=\"createPlayerForm.invalid\"\n            fxFlex>Submit\n    </button>\n  </div>\n</form>\n"
+module.exports = "<form [formGroup]=\"createPlayerForm\"\r\n      (ngSubmit)=\"createPlayer()\"\r\n      fxLayout=\"row\"\r\n      fxLayoutAlign=\"center center\">\r\n  <mat-form-field fxFlex=\"80\"\r\n                  fxFlex.xs=\"70\">\r\n    <input matInput\r\n           placeholder=\"Nom du personnage\"\r\n           formControlName=\"name\">\r\n  </mat-form-field>\r\n\r\n  <div fxFlex>\r\n    <button mat-button\r\n            type=\"submit\"\r\n            color=\"primary\"\r\n            [disabled]=\"createPlayerForm.invalid\">Submit\r\n    </button>\r\n  </div>\r\n</form>\r\n"
 
 /***/ }),
 
@@ -387,7 +400,7 @@ var CreatePlayerModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-list>\r\n  <mat-list-item *ngFor=\"let player of players$ | async\">{{ player.name }}</mat-list-item>\r\n</mat-list>\r\n"
+module.exports = "<mat-list>\r\n  <mat-list-item *ngFor=\"let player of players$ | async\"\r\n                 routerLink=\"/player/{{player.id}}\"\r\n                 matRipple>{{ player.name }}</mat-list-item>\r\n</mat-list>\r\n"
 
 /***/ }),
 
@@ -398,7 +411,7 @@ module.exports = "<mat-list>\r\n  <mat-list-item *ngFor=\"let player of players$
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvZHVuZ2Vvbi1kcmFnb25zLWNsaWVudC9zcmMvYXBwL2hvbWUvaG9tZS5jb21wb25lbnQuc2NzcyJ9 */"
+module.exports = ".mat-list-item:hover {\n  font-weight: bold;\n  cursor: pointer; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9kdW5nZW9uLWRyYWdvbnMtY2xpZW50L3NyYy9hcHAvaG9tZS9DOlxcVXNlcnNcXG5pY29sYXNjXFxQUk9KRVRTXFxkdW5nZW9uLWRyYWdvbnMtY2xpZW50L2FwcFxcZHVuZ2Vvbi1kcmFnb25zLWNsaWVudFxcc3JjXFxhcHBcXGhvbWVcXGhvbWUuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFFSSxpQkFBaUI7RUFDakIsZUFBZSxFQUFBIiwiZmlsZSI6ImFwcC9kdW5nZW9uLWRyYWdvbnMtY2xpZW50L3NyYy9hcHAvaG9tZS9ob21lLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1hdC1saXN0LWl0ZW0ge1xyXG4gICY6aG92ZXIge1xyXG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgfVxyXG59XHJcbiJdfQ== */"
 
 /***/ }),
 
@@ -461,14 +474,15 @@ var HomeComponent = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeModule", function() { return HomeModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _home_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home.component */ "./src/app/home/home.component.ts");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "../../node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser/animations */ "../../node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "../../node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material */ "../../node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _ngxs_store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngxs/store */ "../../node_modules/@ngxs/store/fesm5/ngxs-store.js");
-/* harmony import */ var _shared_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../shared/store */ "./src/app/shared/store/index.ts");
-/* harmony import */ var _angular_flex_layout__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/flex-layout */ "../../node_modules/@angular/flex-layout/esm5/flex-layout.es5.js");
+/* harmony import */ var _angular_flex_layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/flex-layout */ "../../node_modules/@angular/flex-layout/esm5/flex-layout.es5.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "../../node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "../../node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ "../../node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/platform-browser/animations */ "../../node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "../../node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _ngxs_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ngxs/store */ "../../node_modules/@ngxs/store/fesm5/ngxs-store.js");
+/* harmony import */ var _shared_store__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../shared/store */ "./src/app/shared/store/index.ts");
+/* harmony import */ var _home_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./home.component */ "./src/app/home/home.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -484,28 +498,191 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var HomeModule = /** @class */ (function () {
     function HomeModule() {
     }
     HomeModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
             declarations: [
-                _home_component__WEBPACK_IMPORTED_MODULE_1__["HomeComponent"]
+                _home_component__WEBPACK_IMPORTED_MODULE_9__["HomeComponent"]
             ],
             imports: [
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"],
-                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_3__["BrowserAnimationsModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"],
-                _angular_flex_layout__WEBPACK_IMPORTED_MODULE_8__["FlexLayoutModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatButtonModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatIconModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatListModule"],
-                _ngxs_store__WEBPACK_IMPORTED_MODULE_6__["NgxsModule"].forFeature([_shared_store__WEBPACK_IMPORTED_MODULE_7__["PlayerState"]])
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["BrowserModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],
+                _angular_flex_layout__WEBPACK_IMPORTED_MODULE_1__["FlexLayoutModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatButtonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatIconModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatInputModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatListModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatRippleModule"],
+                _ngxs_store__WEBPACK_IMPORTED_MODULE_7__["NgxsModule"].forFeature([_shared_store__WEBPACK_IMPORTED_MODULE_8__["PlayerState"]]),
+                _angular_router__WEBPACK_IMPORTED_MODULE_6__["RouterModule"]
             ]
         })
     ], HomeModule);
     return HomeModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/playersheet/player.resolver.ts":
+/*!************************************************!*\
+  !*** ./src/app/playersheet/player.resolver.ts ***!
+  \************************************************/
+/*! exports provided: PlayerResolver */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlayerResolver", function() { return PlayerResolver; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ngxs_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ngxs/store */ "../../node_modules/@ngxs/store/fesm5/ngxs-store.js");
+/* harmony import */ var _shared_store_player_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/store/player.actions */ "./src/app/shared/store/player.actions.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var PlayerResolver = /** @class */ (function () {
+    function PlayerResolver(store) {
+        this.store = store;
+    }
+    PlayerResolver.prototype.resolve = function (route, state) {
+        return this.store.dispatch(new _shared_store_player_actions__WEBPACK_IMPORTED_MODULE_2__["FetchPlayer"](route.params.playerId));
+    };
+    PlayerResolver = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_ngxs_store__WEBPACK_IMPORTED_MODULE_1__["Store"]])
+    ], PlayerResolver);
+    return PlayerResolver;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/playersheet/playersheet.component.html":
+/*!********************************************************!*\
+  !*** ./src/app/playersheet/playersheet.component.html ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h1>{{player.name}}</h1>\n"
+
+/***/ }),
+
+/***/ "./src/app/playersheet/playersheet.component.scss":
+/*!********************************************************!*\
+  !*** ./src/app/playersheet/playersheet.component.scss ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvZHVuZ2Vvbi1kcmFnb25zLWNsaWVudC9zcmMvYXBwL3BsYXllcnNoZWV0L3BsYXllcnNoZWV0LmNvbXBvbmVudC5zY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/playersheet/playersheet.component.ts":
+/*!******************************************************!*\
+  !*** ./src/app/playersheet/playersheet.component.ts ***!
+  \******************************************************/
+/*! exports provided: PlayersheetComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlayersheetComponent", function() { return PlayersheetComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ngxs_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ngxs/store */ "../../node_modules/@ngxs/store/fesm5/ngxs-store.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "../../node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _shared_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/store */ "./src/app/shared/store/index.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var PlayersheetComponent = /** @class */ (function () {
+    function PlayersheetComponent(store) {
+        var _this = this;
+        this.store = store;
+        this.player$.subscribe(function (player) { return _this.player = player; });
+    }
+    __decorate([
+        Object(_ngxs_store__WEBPACK_IMPORTED_MODULE_1__["Select"])(_shared_store__WEBPACK_IMPORTED_MODULE_3__["PlayerState"].player),
+        __metadata("design:type", rxjs__WEBPACK_IMPORTED_MODULE_2__["Observable"])
+    ], PlayersheetComponent.prototype, "player$", void 0);
+    PlayersheetComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'dd-playersheet',
+            template: __webpack_require__(/*! ./playersheet.component.html */ "./src/app/playersheet/playersheet.component.html"),
+            styles: [__webpack_require__(/*! ./playersheet.component.scss */ "./src/app/playersheet/playersheet.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_ngxs_store__WEBPACK_IMPORTED_MODULE_1__["Store"]])
+    ], PlayersheetComponent);
+    return PlayersheetComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/playersheet/playersheet.module.ts":
+/*!***************************************************!*\
+  !*** ./src/app/playersheet/playersheet.module.ts ***!
+  \***************************************************/
+/*! exports provided: PlayersheetModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlayersheetModule", function() { return PlayersheetModule; });
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common */ "../../node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _player_resolver__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./player.resolver */ "./src/app/playersheet/player.resolver.ts");
+/* harmony import */ var _playersheet_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./playersheet.component */ "./src/app/playersheet/playersheet.component.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var PlayersheetModule = /** @class */ (function () {
+    function PlayersheetModule() {
+    }
+    PlayersheetModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            declarations: [_playersheet_component__WEBPACK_IMPORTED_MODULE_3__["PlayersheetComponent"]],
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_0__["CommonModule"]
+            ],
+            providers: [_player_resolver__WEBPACK_IMPORTED_MODULE_2__["PlayerResolver"]]
+        })
+    ], PlayersheetModule);
+    return PlayersheetModule;
 }());
 
 
@@ -568,13 +745,22 @@ var PlayerStoreModule = /** @class */ (function () {
 /*!************************************************!*\
   !*** ./src/app/shared/store/player.actions.ts ***!
   \************************************************/
-/*! exports provided: FetchPlayers, CreatePlayer */
+/*! exports provided: FetchPlayer, FetchPlayers, CreatePlayer */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FetchPlayer", function() { return FetchPlayer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FetchPlayers", function() { return FetchPlayers; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreatePlayer", function() { return CreatePlayer; });
+var FetchPlayer = /** @class */ (function () {
+    function FetchPlayer(playerId) {
+        this.playerId = playerId;
+    }
+    FetchPlayer.type = '[Player] Fetch player';
+    return FetchPlayer;
+}());
+
 var FetchPlayers = /** @class */ (function () {
     function FetchPlayers() {
     }
@@ -623,11 +809,15 @@ var PlayerGateway = /** @class */ (function () {
     function PlayerGateway(httpClient) {
         this.httpClient = httpClient;
     }
+    PlayerGateway.prototype.fetchPlayer = function (playerId) {
+        var url = _utils_endpoints_enum__WEBPACK_IMPORTED_MODULE_2__["Endpoints"].player.replace(':playerId', String(playerId));
+        return this.httpClient.get(url);
+    };
     PlayerGateway.prototype.fetchPlayers = function () {
-        return this.httpClient.get(_utils_endpoints_enum__WEBPACK_IMPORTED_MODULE_2__["Endpoints"].player);
+        return this.httpClient.get(_utils_endpoints_enum__WEBPACK_IMPORTED_MODULE_2__["Endpoints"].players);
     };
     PlayerGateway.prototype.createPlayer = function (player) {
-        return this.httpClient.post(_utils_endpoints_enum__WEBPACK_IMPORTED_MODULE_2__["Endpoints"].player, player);
+        return this.httpClient.post(_utils_endpoints_enum__WEBPACK_IMPORTED_MODULE_2__["Endpoints"].players, player);
     };
     PlayerGateway = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
@@ -679,6 +869,10 @@ var PlayerState = /** @class */ (function () {
     PlayerState.players = function (state) {
         return state.players;
     };
+    PlayerState.prototype.fetchPlayer = function (ctx, action) {
+        return this.playerGateway.fetchPlayer(action.playerId)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (player) { return ctx.patchState({ player: player }); }));
+    };
     PlayerState.prototype.fetchPlayers = function (ctx) {
         return this.playerGateway.fetchPlayers()
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (players) { return ctx.patchState({ players: players }); }));
@@ -687,6 +881,12 @@ var PlayerState = /** @class */ (function () {
         return this.playerGateway.createPlayer(action.player)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function () { return ctx.dispatch(new _player_actions__WEBPACK_IMPORTED_MODULE_3__["FetchPlayers"]()); }));
     };
+    __decorate([
+        Object(_ngxs_store__WEBPACK_IMPORTED_MODULE_0__["Action"])(_player_actions__WEBPACK_IMPORTED_MODULE_3__["FetchPlayer"]),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object, _player_actions__WEBPACK_IMPORTED_MODULE_3__["FetchPlayer"]]),
+        __metadata("design:returntype", rxjs__WEBPACK_IMPORTED_MODULE_1__["Observable"])
+    ], PlayerState.prototype, "fetchPlayer", null);
     __decorate([
         Object(_ngxs_store__WEBPACK_IMPORTED_MODULE_0__["Action"])(_player_actions__WEBPACK_IMPORTED_MODULE_3__["FetchPlayers"]),
         __metadata("design:type", Function),
@@ -713,7 +913,7 @@ var PlayerState = /** @class */ (function () {
     ], PlayerState, "players", null);
     PlayerState = __decorate([
         Object(_ngxs_store__WEBPACK_IMPORTED_MODULE_0__["State"])({
-            name: 'digitalNetwork',
+            name: 'player',
             defaults: {
                 players: [],
                 player: null
@@ -822,7 +1022,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Endpoints", function() { return Endpoints; });
 var Endpoints;
 (function (Endpoints) {
-    Endpoints["player"] = "/api/player";
+    Endpoints["players"] = "/api/player";
+    Endpoints["player"] = "/api/player/:playerId";
 })(Endpoints || (Endpoints = {}));
 
 
@@ -910,7 +1111,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Dev-Programs\dungeon-dragons-client\app\dungeon-dragons-client\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\nicolasc\PROJETS\dungeon-dragons-client\app\dungeon-dragons-client\src\main.ts */"./src/main.ts");
 
 
 /***/ })
