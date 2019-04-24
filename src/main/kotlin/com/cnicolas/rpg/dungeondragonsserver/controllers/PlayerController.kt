@@ -7,16 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.*
 import javax.validation.Valid
 
 @RestController
 class PlayerController(@Autowired private val playerRepository: PlayerRepository) {
-    @GetMapping(Endpoints.PLAYER)
+    @GetMapping(Endpoints.PLAYERS)
     fun getPlayers(): List<Player> {
         return playerRepository.findAll()
     }
 
-    @PostMapping(Endpoints.PLAYER)
+    @GetMapping(Endpoints.PLAYER)
+    fun getPlayer(@PathVariable playerId: Long): Optional<Player> {
+        return playerRepository.findById(playerId)
+    }
+
+    @PostMapping(Endpoints.PLAYERS)
     fun createPlayer(@Valid @RequestBody player: Player): ResponseEntity<Player> {
         if (player.valid) {
             return ResponseEntity.ok(playerRepository.save(player))
@@ -26,8 +32,13 @@ class PlayerController(@Autowired private val playerRepository: PlayerRepository
             .body(null)
     }
 
-    @DeleteMapping(Endpoints.PLAYER)
-    fun removePlayers() {
+    @DeleteMapping(Endpoints.PLAYERS)
+    fun deletePlayers() {
         return playerRepository.deleteAll()
+    }
+
+    @DeleteMapping(Endpoints.PLAYER)
+    fun deletePlayers(@PathVariable playerId: Long) {
+        return playerRepository.deleteById(playerId)
     }
 }

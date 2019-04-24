@@ -6,5 +6,5 @@ import javax.persistence.*
 @Table
 data class Player(
     var name: String = "",
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Int
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long
 )
