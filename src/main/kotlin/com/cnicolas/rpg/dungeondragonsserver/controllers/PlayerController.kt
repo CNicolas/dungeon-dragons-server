@@ -32,6 +32,15 @@ class PlayerController(@Autowired private val playerRepository: PlayerRepository
             .body(null)
     }
 
+    @PutMapping(Endpoints.PLAYERS)
+    fun updatePlayer(@Valid @RequestBody player: Player): ResponseEntity<Player> {
+        if (player.valid) {
+            return ResponseEntity.ok(playerRepository.save(player))
+        }
+        return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED)
+            .body(null)
+    }
+
     @DeleteMapping(Endpoints.PLAYERS)
     fun deletePlayers() {
         return playerRepository.deleteAll()
