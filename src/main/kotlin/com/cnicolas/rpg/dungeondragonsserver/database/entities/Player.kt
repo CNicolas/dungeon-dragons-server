@@ -8,4 +8,5 @@ import javax.persistence.*
 data class Player(@Column(unique = true) val name: String,
                   val race: Race,
                   @OneToMany(cascade = [CascadeType.ALL]) val weapons: List<Weapon> = listOf(),
+                  @OneToMany(cascade = [CascadeType.ALL]) val equipments: List<Equipment> = listOf(),
                   @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long)
