@@ -246,15 +246,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var AppComponent = /** @class */ (function (_super) {
     __extends(AppComponent, _super);
-    function AppComponent(store, breakpointObserver) {
+    function AppComponent(breakpointObserver) {
         var _this = _super.call(this, breakpointObserver) || this;
-        _this.store = store;
         _this.willUnsubscribe(_this.player$.subscribe(function (player) { return _this.player = player; }));
         return _this;
     }
-    AppComponent.prototype.ngOnInit = function () {
-        this.store.dispatch(new _shared_store_player__WEBPACK_IMPORTED_MODULE_7__["FetchPlayers"]());
-    };
     AppComponent.prototype.closeDrawer = function () {
         if (this.isHandset) {
             this.drawer.toggle();
@@ -278,8 +274,7 @@ var AppComponent = /** @class */ (function (_super) {
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
             styles: [__webpack_require__(/*! ./app.component.scss */ "./src/app/app.component.scss")]
         }),
-        __metadata("design:paramtypes", [_ngxs_store__WEBPACK_IMPORTED_MODULE_3__["Store"],
-            _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_0__["BreakpointObserver"]])
+        __metadata("design:paramtypes", [_angular_cdk_layout__WEBPACK_IMPORTED_MODULE_0__["BreakpointObserver"]])
     ], AppComponent);
     return AppComponent;
 }(_core__WEBPACK_IMPORTED_MODULE_5__["AbstractHandsetObserver"]));
@@ -776,8 +771,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent() {
+    function HomeComponent(store) {
+        this.store = store;
     }
+    HomeComponent.prototype.ngOnInit = function () {
+        this.store.dispatch(new _shared_store_player__WEBPACK_IMPORTED_MODULE_3__["FetchPlayers"]());
+    };
     __decorate([
         Object(_ngxs_store__WEBPACK_IMPORTED_MODULE_1__["Select"])(_shared_store_player__WEBPACK_IMPORTED_MODULE_3__["PlayerState"].players),
         __metadata("design:type", rxjs__WEBPACK_IMPORTED_MODULE_2__["Observable"])
@@ -787,7 +786,8 @@ var HomeComponent = /** @class */ (function () {
             selector: 'dd-home',
             template: __webpack_require__(/*! ./home.component.html */ "./src/app/home/home.component.html"),
             styles: [__webpack_require__(/*! ./home.component.scss */ "./src/app/home/home.component.scss")]
-        })
+        }),
+        __metadata("design:paramtypes", [_ngxs_store__WEBPACK_IMPORTED_MODULE_1__["Store"]])
     ], HomeComponent);
     return HomeComponent;
 }());
@@ -1117,7 +1117,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlayerInventoryEquipmentsComponent", function() { return PlayerInventoryEquipmentsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "../../node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _equipment_edition_dialog_equipment_edition_dialog_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./equipment-edition-dialog/equipment-edition-dialog.component */ "./src/app/playersheet/player-inventory/player-inventory-equipments/equipment-edition-dialog/equipment-edition-dialog.component.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "../../node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _equipment_edition_dialog_equipment_edition_dialog_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./equipment-edition-dialog/equipment-edition-dialog.component */ "./src/app/playersheet/player-inventory/player-inventory-equipments/equipment-edition-dialog/equipment-edition-dialog.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1130,6 +1131,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var PlayerInventoryEquipmentsComponent = /** @class */ (function () {
     function PlayerInventoryEquipmentsComponent(dialog) {
         this.dialog = dialog;
@@ -1139,15 +1141,13 @@ var PlayerInventoryEquipmentsComponent = /** @class */ (function () {
     }
     PlayerInventoryEquipmentsComponent.prototype.openEquipmentEditionDialog = function (equipment, equipmentIndex) {
         var _this = this;
-        var equipmentEditionDialog = this.dialog.open(_equipment_edition_dialog_equipment_edition_dialog_component__WEBPACK_IMPORTED_MODULE_2__["EquipmentEditionDialogComponent"], {
+        var equipmentEditionDialog = this.dialog.open(_equipment_edition_dialog_equipment_edition_dialog_component__WEBPACK_IMPORTED_MODULE_3__["EquipmentEditionDialogComponent"], {
             autoFocus: false,
             data: { equipment: equipment }
         });
         equipmentEditionDialog.afterClosed()
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["filter"])(function (newEquipment) { return !!newEquipment; }))
             .subscribe(function (newEquipment) {
-            if (!!!newEquipment) {
-                return;
-            }
             if (newEquipment === -1) {
                 _this.equipments.splice(equipmentIndex, 1);
             }
@@ -1159,8 +1159,9 @@ var PlayerInventoryEquipmentsComponent = /** @class */ (function () {
     };
     PlayerInventoryEquipmentsComponent.prototype.openEquipmentCreationDialog = function () {
         var _this = this;
-        var equipmentEditionDialog = this.dialog.open(_equipment_edition_dialog_equipment_edition_dialog_component__WEBPACK_IMPORTED_MODULE_2__["EquipmentEditionDialogComponent"]);
+        var equipmentEditionDialog = this.dialog.open(_equipment_edition_dialog_equipment_edition_dialog_component__WEBPACK_IMPORTED_MODULE_3__["EquipmentEditionDialogComponent"]);
         equipmentEditionDialog.afterClosed()
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["filter"])(function (newEquipment) { return !!newEquipment; }))
             .subscribe(function (newEquipment) {
             _this.update.emit(_this.equipments.concat([newEquipment]));
         });
@@ -1222,7 +1223,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlayerInventoryWeaponsComponent", function() { return PlayerInventoryWeaponsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "../../node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _weapon_edition_dialog_weapon_edition_dialog_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./weapon-edition-dialog/weapon-edition-dialog.component */ "./src/app/playersheet/player-inventory/player-inventory-weapons/weapon-edition-dialog/weapon-edition-dialog.component.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "../../node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _weapon_edition_dialog_weapon_edition_dialog_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./weapon-edition-dialog/weapon-edition-dialog.component */ "./src/app/playersheet/player-inventory/player-inventory-weapons/weapon-edition-dialog/weapon-edition-dialog.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1235,6 +1237,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var PlayerInventoryWeaponsComponent = /** @class */ (function () {
     function PlayerInventoryWeaponsComponent(dialog) {
         this.dialog = dialog;
@@ -1244,15 +1247,13 @@ var PlayerInventoryWeaponsComponent = /** @class */ (function () {
     }
     PlayerInventoryWeaponsComponent.prototype.openWeaponEditionDialog = function (weapon, weaponIndex) {
         var _this = this;
-        var weaponEditionDialog = this.dialog.open(_weapon_edition_dialog_weapon_edition_dialog_component__WEBPACK_IMPORTED_MODULE_2__["WeaponEditionDialogComponent"], {
+        var weaponEditionDialog = this.dialog.open(_weapon_edition_dialog_weapon_edition_dialog_component__WEBPACK_IMPORTED_MODULE_3__["WeaponEditionDialogComponent"], {
             autoFocus: false,
             data: { weapon: weapon }
         });
         weaponEditionDialog.afterClosed()
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["filter"])(function (newWeapon) { return !!newWeapon; }))
             .subscribe(function (newWeapon) {
-            if (!!!newWeapon) {
-                return;
-            }
             if (newWeapon === -1) {
                 _this.weapons.splice(weaponIndex, 1);
             }
@@ -1264,8 +1265,9 @@ var PlayerInventoryWeaponsComponent = /** @class */ (function () {
     };
     PlayerInventoryWeaponsComponent.prototype.openWeaponCreationDialog = function () {
         var _this = this;
-        var weaponEditionDialog = this.dialog.open(_weapon_edition_dialog_weapon_edition_dialog_component__WEBPACK_IMPORTED_MODULE_2__["WeaponEditionDialogComponent"]);
+        var weaponEditionDialog = this.dialog.open(_weapon_edition_dialog_weapon_edition_dialog_component__WEBPACK_IMPORTED_MODULE_3__["WeaponEditionDialogComponent"]);
         weaponEditionDialog.afterClosed()
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["filter"])(function (newWeapon) { return !!newWeapon; }))
             .subscribe(function (newWeapon) {
             _this.update.emit(_this.weapons.concat([newWeapon]));
         });
@@ -2265,7 +2267,6 @@ var PlayerState = /** @class */ (function () {
         return this.playerGateway.updatePlayer(__assign({}, ctx.getState().player, action.player))
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (player) {
             ctx.patchState({ player: player });
-            ctx.dispatch(new _player_actions__WEBPACK_IMPORTED_MODULE_6__["FetchPlayers"]());
             ctx.dispatch(new _core_core_actions__WEBPACK_IMPORTED_MODULE_5__["SetToolbarTitle"](player.name));
         }));
     };
