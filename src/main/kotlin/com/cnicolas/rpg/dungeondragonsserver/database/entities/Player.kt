@@ -10,4 +10,6 @@ data class Player(@Column(unique = true) val name: String,
                   @OneToMany(cascade = [CascadeType.ALL]) val weapons: List<Weapon> = listOf(),
                   @OneToMany(cascade = [CascadeType.ALL]) val equipments: List<Equipment> = listOf(),
                   @OneToMany(cascade = [CascadeType.ALL]) val expandables: List<Expandable> = listOf(),
+                  @OneToMany(cascade = [CascadeType.ALL]) val otherItems: List<OtherItem> = listOf(),
+                  @OneToMany(cascade = [CascadeType.ALL]) val actions: List<Action> = listOf(),
                   @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long)
