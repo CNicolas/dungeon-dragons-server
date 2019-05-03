@@ -1,4 +1,4 @@
-package com.cnicolas.rpg.dungeondragonsserver.database.entities
+package com.cnicolas.rpg.dungeondragonsserver.database.tables
 
 import com.cnicolas.rpg.dungeondragonsserver.database.enums.WeaponRange
 import javax.persistence.*

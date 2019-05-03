@@ -1,4 +1,4 @@
-package com.cnicolas.rpg.dungeondragonsserver.database.entities
+package com.cnicolas.rpg.dungeondragonsserver.database.tables
 
 import javax.persistence.*
 

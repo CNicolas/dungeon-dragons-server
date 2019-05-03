@@ -1,6 +1,6 @@
 package com.cnicolas.rpg.dungeondragonsserver.controllers
 
-import com.cnicolas.rpg.dungeondragonsserver.database.entities.Player
+import com.cnicolas.rpg.dungeondragonsserver.database.tables.Player
 import com.cnicolas.rpg.dungeondragonsserver.database.repositories.PlayerRepository
 import com.cnicolas.rpg.dungeondragonsserver.utils.player.valid
 import org.springframework.beans.factory.annotation.Autowired

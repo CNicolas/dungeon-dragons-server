@@ -1,6 +1,6 @@
 package com.cnicolas.rpg.dungeondragonsserver.database.repositories
 
-import com.cnicolas.rpg.dungeondragonsserver.database.entities.Player
+import com.cnicolas.rpg.dungeondragonsserver.database.tables.Player
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
