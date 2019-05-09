@@ -1,0 +1,10 @@
+server:
+  port: 9090
+spring:
+  datasource: # COMMENT ON LOCALHOST
+    platform: postgres # COMMENT ON LOCALHOST
+    driver-class-name: org.postgresql.Driver # COMMENT ON LOCALHOST
+  jpa:
+    database: postgresql # COMMENT ON LOCALHOST
+    hibernate:
+      ddl-auto: create
