@@ -636,6 +636,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dungeon_dragons_model_player__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @dungeon-dragons-model/player */ "../../libs/dungeon-dragons-model/src/lib/player/index.ts");
 /* harmony import */ var _ngxs_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngxs/store */ "../../node_modules/@ngxs/store/fesm5/ngxs-store.js");
 /* harmony import */ var _shared_store_player__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shared/store/player */ "./src/app/shared/store/player/index.ts");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -660,7 +671,8 @@ var CreatePlayerComponent = /** @class */ (function () {
         });
     }
     CreatePlayerComponent.prototype.createPlayer = function () {
-        this.store.dispatch(new _shared_store_player__WEBPACK_IMPORTED_MODULE_4__["CreatePlayer"](this.createPlayerForm.getRawValue()));
+        var newPlayer = __assign({}, this.createPlayerForm.getRawValue(), { strength: 10, dexterity: 10, constitution: 10, intelligence: 10, wisdom: 10, charisma: 10 });
+        this.store.dispatch(new _shared_store_player__WEBPACK_IMPORTED_MODULE_4__["CreatePlayer"](newPlayer));
     };
     CreatePlayerComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1164,7 +1176,7 @@ var PlayerActionsComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-form-field>\n  <input matInput\n         [formControl]=\"characteristicControl\"\n         [placeholder]=\"placeholder\"\n         type=\"number\"\n         min=\"0\">\n  <dd-characteristic-modifier [characteristicValue]=\"characteristicControl.value\"\n                              matSuffix></dd-characteristic-modifier>\n</mat-form-field>\n"
+module.exports = "<mat-form-field fxFlex=\"90\">\n  <input matInput\n         [formControl]=\"characteristicControl\"\n         [placeholder]=\"placeholder\"\n         type=\"number\"\n         min=\"0\">\n</mat-form-field>\n\n<div matBadge=\"{{ modifier }}\"\n     matBadgeOverlap=\"false\"\n     [class.positive]=\"modifier > 0\"\n     [class.negative]=\"modifier < 0\"\n     class=\"characteristic-modifier\"></div>\n\n"
 
 /***/ }),
 
@@ -1175,7 +1187,7 @@ module.exports = "<mat-form-field>\n  <input matInput\n         [formControl]=\"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvZHVuZ2Vvbi1kcmFnb25zLWNsaWVudC9zcmMvYXBwL3BsYXllcnNoZWV0L3BsYXllci1jaGFyYWN0ZXJpc3RpY3MvY2hhcmFjdGVyaXN0aWMtY29udHJvbC9jaGFyYWN0ZXJpc3RpYy1jb250cm9sLmNvbXBvbmVudC5zY3NzIn0= */"
+module.exports = "/* Primary */\n/* Accent */\n.characteristic-modifier {\n  right: 15px;\n  top: 25px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9kdW5nZW9uLWRyYWdvbnMtY2xpZW50L3NyYy9hcHAvcGxheWVyc2hlZXQvcGxheWVyLWNoYXJhY3RlcmlzdGljcy9jaGFyYWN0ZXJpc3RpYy1jb250cm9sL0M6XFxVc2Vyc1xcbmljb2xhc2NcXFBST0pFVFNcXGR1bmdlb24tZHJhZ29ucy1jbGllbnQvYXBwXFxkdW5nZW9uLWRyYWdvbnMtY2xpZW50XFxzcmNcXHN0eWxlc1xcdmFyaWFibGVzLnNjc3MiLCJhcHAvZHVuZ2Vvbi1kcmFnb25zLWNsaWVudC9zcmMvYXBwL3BsYXllcnNoZWV0L3BsYXllci1jaGFyYWN0ZXJpc3RpY3MvY2hhcmFjdGVyaXN0aWMtY29udHJvbC9DOlxcVXNlcnNcXG5pY29sYXNjXFxQUk9KRVRTXFxkdW5nZW9uLWRyYWdvbnMtY2xpZW50L2FwcFxcZHVuZ2Vvbi1kcmFnb25zLWNsaWVudFxcc3JjXFxhcHBcXHBsYXllcnNoZWV0XFxwbGF5ZXItY2hhcmFjdGVyaXN0aWNzXFxjaGFyYWN0ZXJpc3RpYy1jb250cm9sXFxjaGFyYWN0ZXJpc3RpYy1jb250cm9sLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVlBLFlBQUE7QUFrQ0EsV0FBQTtBQzFDRTtFQUNFLFdBQVc7RUFDWCxTQUFTLEVBQUEiLCJmaWxlIjoiYXBwL2R1bmdlb24tZHJhZ29ucy1jbGllbnQvc3JjL2FwcC9wbGF5ZXJzaGVldC9wbGF5ZXItY2hhcmFjdGVyaXN0aWNzL2NoYXJhY3RlcmlzdGljLWNvbnRyb2wvY2hhcmFjdGVyaXN0aWMtY29udHJvbC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIiRwcmltYXJ5LWNvbG9yLWRhcms6ICM0NTVBNjQ7XHJcbiRwcmltYXJ5LWNvbG9yOiAjNjA3RDhCO1xyXG4kcHJpbWFyeS1jb2xvci1saWdodDogI0NGRDhEQztcclxuJHByaW1hcnktY29sb3ItdGV4dDogI0ZGRkZGRjtcclxuJGFjY2VudC1jb2xvcjogIzAwOTY4ODtcclxuJHByaW1hcnktdGV4dC1jb2xvcjogIzIxMjEyMTtcclxuJHNlY29uZGFyeS10ZXh0LWNvbG9yOiAjNzU3NTc1O1xyXG4kZGl2aWRlci1jb2xvcjogI0JEQkRCRDtcclxuXHJcbiRkZC1zdWNjZXNzOiAkYWNjZW50LWNvbG9yO1xyXG4kZGQtZXJyb3I6ICNCMDAwMjA7XHJcblxyXG4vKiBQcmltYXJ5ICovXHJcbiRkZC1ibHVlZ3JleTogKFxyXG4gIDUwIDogI2VjZWZmMSxcclxuICAxMDAgOiAjY2ZkOGRjLFxyXG4gIDIwMCA6ICNiMGJlYzUsXHJcbiAgMzAwIDogIzkwYTRhZSxcclxuICA0MDAgOiAjNzg5MTljLFxyXG4gIDUwMCA6ICM2MDdkOGIsXHJcbiAgNjAwIDogIzU4NzU4MyxcclxuICA3MDAgOiAjNGU2YTc4LFxyXG4gIDgwMCA6ICM0NDYwNmUsXHJcbiAgOTAwIDogIzMzNGQ1YixcclxuICBBMTAwIDogI2FiZTFmZixcclxuICBBMjAwIDogIzc4Y2VmZixcclxuICBBNDAwIDogIzQ1YmNmZixcclxuICBBNzAwIDogIzJiYjNmZixcclxuICBjb250cmFzdDogKFxyXG4gICAgNTAgOiAjMDAwMDAwLFxyXG4gICAgMTAwIDogIzAwMDAwMCxcclxuICAgIDIwMCA6ICMwMDAwMDAsXHJcbiAgICAzMDAgOiAjMDAwMDAwLFxyXG4gICAgNDAwIDogIzAwMDAwMCxcclxuICAgIDUwMCA6ICNmZmZmZmYsXHJcbiAgICA2MDAgOiAjZmZmZmZmLFxyXG4gICAgNzAwIDogI2ZmZmZmZixcclxuICAgIDgwMCA6ICNmZmZmZmYsXHJcbiAgICA5MDAgOiAjZmZmZmZmLFxyXG4gICAgQTEwMCA6ICMwMDAwMDAsXHJcbiAgICBBMjAwIDogIzAwMDAwMCxcclxuICAgIEE0MDAgOiAjMDAwMDAwLFxyXG4gICAgQTcwMCA6ICMwMDAwMDAsXHJcbiAgKVxyXG4pO1xyXG5cclxuLyogQWNjZW50ICovXHJcbiRkZC10ZWFsOiAoXHJcbiAgNTAgOiAjZTBmMmYxLFxyXG4gIDEwMCA6ICNiM2UwZGIsXHJcbiAgMjAwIDogIzgwY2JjNCxcclxuICAzMDAgOiAjNGRiNmFjLFxyXG4gIDQwMCA6ICMyNmE2OWEsXHJcbiAgNTAwIDogIzAwOTY4OCxcclxuICA2MDAgOiAjMDA4ZTgwLFxyXG4gIDcwMCA6ICMwMDgzNzUsXHJcbiAgODAwIDogIzAwNzk2YixcclxuICA5MDAgOiAjMDA2ODU4LFxyXG4gIEExMDAgOiAjOTdmZmVjLFxyXG4gIEEyMDAgOiAjNjRmZmUzLFxyXG4gIEE0MDAgOiAjMzFmZmRhLFxyXG4gIEE3MDAgOiAjMThmZmQ1LFxyXG4gIGNvbnRyYXN0OiAoXHJcbiAgICA1MCA6ICMwMDAwMDAsXHJcbiAgICAxMDAgOiAjMDAwMDAwLFxyXG4gICAgMjAwIDogIzAwMDAwMCxcclxuICAgIDMwMCA6ICMwMDAwMDAsXHJcbiAgICA0MDAgOiAjZmZmZmZmLFxyXG4gICAgNTAwIDogI2ZmZmZmZixcclxuICAgIDYwMCA6ICNmZmZmZmYsXHJcbiAgICA3MDAgOiAjZmZmZmZmLFxyXG4gICAgODAwIDogI2ZmZmZmZixcclxuICAgIDkwMCA6ICNmZmZmZmYsXHJcbiAgICBBMTAwIDogIzAwMDAwMCxcclxuICAgIEEyMDAgOiAjMDAwMDAwLFxyXG4gICAgQTQwMCA6ICMwMDAwMDAsXHJcbiAgICBBNzAwIDogIzAwMDAwMCxcclxuICApXHJcbik7XHJcbiIsIi8vbm9pbnNwZWN0aW9uIENzc1Vua25vd25UYXJnZXRcclxuQGltcG9ydCAnfmFwcC9kdW5nZW9uLWRyYWdvbnMtY2xpZW50L3NyYy9zdHlsZXMvdmFyaWFibGVzJztcclxuXHJcbi5jaGFyYWN0ZXJpc3RpYyB7XHJcbiAgJi1tb2RpZmllciB7XHJcbiAgICByaWdodDogMTVweDtcclxuICAgIHRvcDogMjVweDtcclxuICB9XHJcbn1cclxuIl19 */"
 
 /***/ }),
 
@@ -1191,6 +1203,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CharacteristicControlComponent", function() { return CharacteristicControlComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "../../node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _dungeon_dragons_model_player_characteristics_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @dungeon-dragons-model/player/characteristics.utils */ "../../libs/dungeon-dragons-model/src/lib/player/characteristics.utils.ts");
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../core */ "./src/app/core/index.ts");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1202,9 +1229,29 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
-var CharacteristicControlComponent = /** @class */ (function () {
+
+
+var CharacteristicControlComponent = /** @class */ (function (_super) {
+    __extends(CharacteristicControlComponent, _super);
     function CharacteristicControlComponent() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
+    CharacteristicControlComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.willUnsubscribe(this.characteristicControl.valueChanges.subscribe(function (newCharacteristicValue) {
+            _this.setModifier(newCharacteristicValue);
+        }));
+        this.setModifier(this.characteristicControl.value);
+    };
+    CharacteristicControlComponent.prototype.setModifier = function (characteristicValue) {
+        var newModifier = Object(_dungeon_dragons_model_player_characteristics_utils__WEBPACK_IMPORTED_MODULE_2__["calculateModifier"])(characteristicValue);
+        if (newModifier > 0) {
+            this.modifier = "+" + newModifier;
+        }
+        else {
+            this.modifier = "" + newModifier;
+        }
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", String)
@@ -1221,76 +1268,7 @@ var CharacteristicControlComponent = /** @class */ (function () {
         })
     ], CharacteristicControlComponent);
     return CharacteristicControlComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/playersheet/player-characteristics/characteristic-control/characteristic-modifier/characteristic-modifier.component.html":
-/*!******************************************************************************************************************************************!*\
-  !*** ./src/app/playersheet/player-characteristics/characteristic-control/characteristic-modifier/characteristic-modifier.component.html ***!
-  \******************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<span matBadge=\"{{modifier}}\"\n      matBadgeOverlap=\"false\"></span>\n"
-
-/***/ }),
-
-/***/ "./src/app/playersheet/player-characteristics/characteristic-control/characteristic-modifier/characteristic-modifier.component.scss":
-/*!******************************************************************************************************************************************!*\
-  !*** ./src/app/playersheet/player-characteristics/characteristic-control/characteristic-modifier/characteristic-modifier.component.scss ***!
-  \******************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvZHVuZ2Vvbi1kcmFnb25zLWNsaWVudC9zcmMvYXBwL3BsYXllcnNoZWV0L3BsYXllci1jaGFyYWN0ZXJpc3RpY3MvY2hhcmFjdGVyaXN0aWMtY29udHJvbC9jaGFyYWN0ZXJpc3RpYy1tb2RpZmllci9jaGFyYWN0ZXJpc3RpYy1tb2RpZmllci5jb21wb25lbnQuc2NzcyJ9 */"
-
-/***/ }),
-
-/***/ "./src/app/playersheet/player-characteristics/characteristic-control/characteristic-modifier/characteristic-modifier.component.ts":
-/*!****************************************************************************************************************************************!*\
-  !*** ./src/app/playersheet/player-characteristics/characteristic-control/characteristic-modifier/characteristic-modifier.component.ts ***!
-  \****************************************************************************************************************************************/
-/*! exports provided: CharacteristicModifierComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CharacteristicModifierComponent", function() { return CharacteristicModifierComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _dungeon_dragons_model_player_characteristics_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @dungeon-dragons-model/player/characteristics.utils */ "../../libs/dungeon-dragons-model/src/lib/player/characteristics.utils.ts");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var CharacteristicModifierComponent = /** @class */ (function () {
-    function CharacteristicModifierComponent() {
-    }
-    CharacteristicModifierComponent.prototype.ngOnChanges = function () {
-        this.modifier = Object(_dungeon_dragons_model_player_characteristics_utils__WEBPACK_IMPORTED_MODULE_1__["calculateModifier"])(this.characteristicValue);
-    };
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", Number)
-    ], CharacteristicModifierComponent.prototype, "characteristicValue", void 0);
-    CharacteristicModifierComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'dd-characteristic-modifier',
-            template: __webpack_require__(/*! ./characteristic-modifier.component.html */ "./src/app/playersheet/player-characteristics/characteristic-control/characteristic-modifier/characteristic-modifier.component.html"),
-            styles: [__webpack_require__(/*! ./characteristic-modifier.component.scss */ "./src/app/playersheet/player-characteristics/characteristic-control/characteristic-modifier/characteristic-modifier.component.scss")]
-        })
-    ], CharacteristicModifierComponent);
-    return CharacteristicModifierComponent;
-}());
+}(_core__WEBPACK_IMPORTED_MODULE_3__["AbstractSubscriptionsDestroyer"]));
 
 
 
@@ -1303,7 +1281,7 @@ var CharacteristicModifierComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"playerForm\"\r\n      fxLayout=\"row wrap\">\r\n  <mat-form-field fxFlex=\"60\"\r\n                  fxFlex.xs=\"100\">\r\n    <input matInput\r\n           placeholder=\"Nom du personnage\"\r\n           formControlName=\"name\">\r\n  </mat-form-field>\r\n\r\n  <div fxFlex=\"50\"\r\n       fxLayout=\"row wrap\">\r\n    <dd-characteristic-control [characteristicControl]=\"playerForm.get('strength')\"\r\n                               fxFlex=\"100\"></dd-characteristic-control>\r\n    <dd-characteristic-control [characteristicControl]=\"playerForm.get('dexterity')\"\r\n                               fxFlex=\"100\"></dd-characteristic-control>\r\n    <dd-characteristic-control [characteristicControl]=\"playerForm.get('constitution')\"\r\n                               fxFlex=\"100\"></dd-characteristic-control>\r\n  </div>\r\n\r\n  <div fxFlex=\"50\"\r\n       fxLayout=\"row wrap\">\r\n    <dd-characteristic-control [characteristicControl]=\"playerForm.get('intelligence')\"\r\n                               fxFlex=\"100\"></dd-characteristic-control>\r\n    <dd-characteristic-control [characteristicControl]=\"playerForm.get('wisdom')\"\r\n                               fxFlex=\"100\"></dd-characteristic-control>\r\n    <dd-characteristic-control [characteristicControl]=\"playerForm.get('charisma')\"\r\n                               fxFlex=\"100\"></dd-characteristic-control>\r\n  </div>\r\n</form>\r\n"
+module.exports = "<form [formGroup]=\"playerForm\">\r\n\r\n  <div fxLayout=\"row wrap\">\r\n    <mat-form-field fxFlex=\"30\"\r\n                    fxFlex.xs=\"75\">\r\n      <input matInput\r\n             placeholder=\"Nom du personnage\"\r\n             formControlName=\"name\">\r\n    </mat-form-field>\r\n\r\n    <mat-form-field fxFlex=\"10\"\r\n                    fxFlex.xs=\"25\">\r\n      <input matInput\r\n             placeholder=\"Niveau\"\r\n             formControlName=\"level\"\r\n             type=\"number\"\r\n             min=\"1\">\r\n    </mat-form-field>\r\n\r\n    <mat-form-field fxFlex=\"20\"\r\n                    fxFlex.xs=\"100\">\r\n      <mat-select formControlName=\"race\"\r\n                  placeholder=\"Race\"\r\n                  required>\r\n        <mat-option *ngFor=\"let race of races | keyvalue | sort:'value'\"\r\n                    [value]=\"race.key\">{{ race.value }}</mat-option>\r\n      </mat-select>\r\n    </mat-form-field>\r\n  </div>\r\n\r\n  <div fxLayout=\"row wrap\">\r\n    <div fxFlex=\"30\"\r\n         fxFlex.xs=\"48\"\r\n         fxLayout=\"row wrap\">\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('strength')\"\r\n                                 placeholder=\"Force\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('dexterity')\"\r\n                                 placeholder=\"Dextérité\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('constitution')\"\r\n                                 placeholder=\"Constitution\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n    </div>\r\n\r\n    <div fxFlex.xs=\"4\"></div>\r\n\r\n    <div fxFlex=\"30\"\r\n         fxFlex.xs=\"48\"\r\n         fxLayout=\"row wrap\">\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('intelligence')\"\r\n                                 placeholder=\"Intelligence\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('wisdom')\"\r\n                                 placeholder=\"Sagesse\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('charisma')\"\r\n                                 placeholder=\"Charisme\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n    </div>\r\n  </div>\r\n\r\n</form>\r\n"
 
 /***/ }),
 
@@ -1330,13 +1308,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlayerCharacteristicsComponent", function() { return PlayerCharacteristicsComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "../../node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _ngxs_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ngxs/store */ "../../node_modules/@ngxs/store/fesm5/ngxs-store.js");
-/* harmony import */ var fast_deep_equal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! fast-deep-equal */ "../../node_modules/fast-deep-equal/index.js");
-/* harmony import */ var fast_deep_equal__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(fast_deep_equal__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "../../node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "../../node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../core */ "./src/app/core/index.ts");
-/* harmony import */ var _shared_store_player__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../shared/store/player */ "./src/app/shared/store/player/index.ts");
+/* harmony import */ var _dungeon_dragons_model_player__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @dungeon-dragons-model/player */ "../../libs/dungeon-dragons-model/src/lib/player/index.ts");
+/* harmony import */ var _ngxs_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngxs/store */ "../../node_modules/@ngxs/store/fesm5/ngxs-store.js");
+/* harmony import */ var fast_deep_equal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! fast-deep-equal */ "../../node_modules/fast-deep-equal/index.js");
+/* harmony import */ var fast_deep_equal__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(fast_deep_equal__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "../../node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "../../node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../core */ "./src/app/core/index.ts");
+/* harmony import */ var _shared_helpers_snack_bar_helper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../shared/helpers/snack-bar.helper */ "./src/app/shared/helpers/snack-bar.helper.ts");
+/* harmony import */ var _shared_store_player__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../shared/store/player */ "./src/app/shared/store/player/index.ts");
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -1378,23 +1358,29 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var PlayerCharacteristicsComponent = /** @class */ (function (_super) {
     __extends(PlayerCharacteristicsComponent, _super);
-    function PlayerCharacteristicsComponent(store, formBuilder) {
+    function PlayerCharacteristicsComponent(store, snackBarHelper, formBuilder) {
         var _this = _super.call(this) || this;
         _this.store = store;
+        _this.snackBarHelper = snackBarHelper;
+        _this.races = _dungeon_dragons_model_player__WEBPACK_IMPORTED_MODULE_2__["Race"];
         _this.loadPlayer = function (player) {
             _this.player = player;
             _this.playerForm.patchValue(player);
         };
         _this.playerForm = formBuilder.group({
             name: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            strength: [10, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            dexterity: [10, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            constitution: [10, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            intelligence: [10, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            wisdom: [10, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            charisma: [10, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
+            level: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            race: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            strength: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            dexterity: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            constitution: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            intelligence: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            wisdom: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            charisma: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
         });
         _this.characteristicsForm = _this.playerForm.get('characteristics');
         _this.willUnsubscribe(_this.player$.subscribe(_this.loadPlayer));
@@ -1402,7 +1388,7 @@ var PlayerCharacteristicsComponent = /** @class */ (function (_super) {
     }
     PlayerCharacteristicsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.willUnsubscribe(this.playerForm.valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["debounceTime"])(2000))
+        this.willUnsubscribe(this.playerForm.valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["debounceTime"])(1000))
             .subscribe(function () { return _this.savePlayer(); }));
     };
     PlayerCharacteristicsComponent.prototype.ngOnDestroy = function () {
@@ -1410,8 +1396,10 @@ var PlayerCharacteristicsComponent = /** @class */ (function (_super) {
         this.savePlayer();
     };
     PlayerCharacteristicsComponent.prototype.savePlayer = function () {
-        if (!fast_deep_equal__WEBPACK_IMPORTED_MODULE_3__(this.extractPlayerFromForm(), this.player)) {
-            this.store.dispatch(new _shared_store_player__WEBPACK_IMPORTED_MODULE_7__["UpdatePlayer"](this.extractPlayerFromForm()));
+        var _this = this;
+        if (!fast_deep_equal__WEBPACK_IMPORTED_MODULE_4__(this.extractPlayerFromForm(), this.player)) {
+            this.willUnsubscribe(this.store.dispatch(new _shared_store_player__WEBPACK_IMPORTED_MODULE_9__["UpdatePlayer"](this.extractPlayerFromForm()))
+                .subscribe(function () { return _this.snackBarHelper.success('Sauvegarde effectuée'); }));
         }
     };
     PlayerCharacteristicsComponent.prototype.extractPlayerFromForm = function () {
@@ -1419,8 +1407,8 @@ var PlayerCharacteristicsComponent = /** @class */ (function (_super) {
         return __assign({}, this.player, formValue);
     };
     __decorate([
-        Object(_ngxs_store__WEBPACK_IMPORTED_MODULE_2__["Select"])(_shared_store_player__WEBPACK_IMPORTED_MODULE_7__["PlayerState"].player),
-        __metadata("design:type", rxjs__WEBPACK_IMPORTED_MODULE_4__["Observable"])
+        Object(_ngxs_store__WEBPACK_IMPORTED_MODULE_3__["Select"])(_shared_store_player__WEBPACK_IMPORTED_MODULE_9__["PlayerState"].player),
+        __metadata("design:type", rxjs__WEBPACK_IMPORTED_MODULE_5__["Observable"])
     ], PlayerCharacteristicsComponent.prototype, "player$", void 0);
     PlayerCharacteristicsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1428,11 +1416,12 @@ var PlayerCharacteristicsComponent = /** @class */ (function (_super) {
             template: __webpack_require__(/*! ./player-characteristics.component.html */ "./src/app/playersheet/player-characteristics/player-characteristics.component.html"),
             styles: [__webpack_require__(/*! ./player-characteristics.component.scss */ "./src/app/playersheet/player-characteristics/player-characteristics.component.scss")]
         }),
-        __metadata("design:paramtypes", [_ngxs_store__WEBPACK_IMPORTED_MODULE_2__["Store"],
+        __metadata("design:paramtypes", [_ngxs_store__WEBPACK_IMPORTED_MODULE_3__["Store"],
+            _shared_helpers_snack_bar_helper__WEBPACK_IMPORTED_MODULE_8__["SnackBarHelper"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]])
     ], PlayerCharacteristicsComponent);
     return PlayerCharacteristicsComponent;
-}(_core__WEBPACK_IMPORTED_MODULE_6__["AbstractSubscriptionsDestroyer"]));
+}(_core__WEBPACK_IMPORTED_MODULE_7__["AbstractSubscriptionsDestroyer"]));
 
 
 
@@ -1453,8 +1442,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_flex_layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/flex-layout */ "../../node_modules/@angular/flex-layout/esm5/flex-layout.es5.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "../../node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "../../node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _characteristic_control_characteristic_control_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./characteristic-control/characteristic-control.component */ "./src/app/playersheet/player-characteristics/characteristic-control/characteristic-control.component.ts");
-/* harmony import */ var _characteristic_control_characteristic_modifier_characteristic_modifier_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./characteristic-control/characteristic-modifier/characteristic-modifier.component */ "./src/app/playersheet/player-characteristics/characteristic-control/characteristic-modifier/characteristic-modifier.component.ts");
+/* harmony import */ var _shared_pipes_pipes_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../shared/pipes/pipes.module */ "./src/app/shared/pipes/pipes.module.ts");
+/* harmony import */ var _characteristic_control_characteristic_control_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./characteristic-control/characteristic-control.component */ "./src/app/playersheet/player-characteristics/characteristic-control/characteristic-control.component.ts");
 /* harmony import */ var _player_characteristics_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./player-characteristics.component */ "./src/app/playersheet/player-characteristics/player-characteristics.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1472,8 +1461,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 var components = [
     _player_characteristics_component__WEBPACK_IMPORTED_MODULE_7__["PlayerCharacteristicsComponent"],
-    _characteristic_control_characteristic_control_component__WEBPACK_IMPORTED_MODULE_5__["CharacteristicControlComponent"],
-    _characteristic_control_characteristic_modifier_characteristic_modifier_component__WEBPACK_IMPORTED_MODULE_6__["CharacteristicModifierComponent"]
+    _characteristic_control_characteristic_control_component__WEBPACK_IMPORTED_MODULE_6__["CharacteristicControlComponent"]
 ];
 var PlayerCharacteristicsModule = /** @class */ (function () {
     function PlayerCharacteristicsModule() {
@@ -1490,7 +1478,8 @@ var PlayerCharacteristicsModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatFormFieldModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatIconModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatInputModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSelectModule"]
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSelectModule"],
+                _shared_pipes_pipes_module__WEBPACK_IMPORTED_MODULE_5__["PipesModule"]
             ]
         })
     ], PlayerCharacteristicsModule);
@@ -2780,7 +2769,6 @@ var SnackBarHelper = /** @class */ (function () {
     SnackBarHelper_1 = SnackBarHelper;
     SnackBarHelper.prototype.success = function (text, duration, actionText, userDismissAction) {
         if (duration === void 0) { duration = SnackBarHelper_1.standardDuration; }
-        if (actionText === void 0) { actionText = 'FERMER'; }
         if (userDismissAction === void 0) { userDismissAction = null; }
         var successSnackBar = this.snackBar.open(text, actionText, __assign({}, this.commonConfig, { duration: duration, panelClass: ['snack-bar-success'] }));
         successSnackBar.onAction()
