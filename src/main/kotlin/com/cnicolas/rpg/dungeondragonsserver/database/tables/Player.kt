@@ -7,6 +7,13 @@ import javax.persistence.*
 @Table
 data class Player(@Column(unique = true) val name: String,
                   val race: Race,
+                  val level: Int,
+                  val strength: Int,
+                  val dexterity: Int,
+                  val constitution: Int,
+                  val intelligence: Int,
+                  val wisdom: Int,
+                  val charisma: Int,
                   @OneToMany(cascade = [CascadeType.ALL]) val weapons: List<Weapon> = listOf(),
                   @OneToMany(cascade = [CascadeType.ALL]) val equipments: List<Equipment> = listOf(),
                   @OneToMany(cascade = [CascadeType.ALL]) val expandables: List<Expandable> = listOf(),
