@@ -39,6 +39,29 @@ var WeaponRange;
 
 /***/ }),
 
+/***/ "../../libs/dungeon-dragons-model/src/lib/player/characteristic.enum.ts":
+/*!*************************************************************************************************************************!*\
+  !*** C:/Users/nicolasc/PROJETS/dungeon-dragons-client/libs/dungeon-dragons-model/src/lib/player/characteristic.enum.ts ***!
+  \*************************************************************************************************************************/
+/*! exports provided: Characteristic */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Characteristic", function() { return Characteristic; });
+var Characteristic;
+(function (Characteristic) {
+    Characteristic["STRENGTH"] = "Force";
+    Characteristic["DEXTERITY"] = "Dext\u00E9rit\u00E9";
+    Characteristic["CONSTITUTION"] = "Constitution";
+    Characteristic["INTELLIGENCE"] = "Intelligence";
+    Characteristic["WISDOM"] = "Sagesse";
+    Characteristic["CHARISMA"] = "Charisme";
+})(Characteristic || (Characteristic = {}));
+
+
+/***/ }),
+
 /***/ "../../libs/dungeon-dragons-model/src/lib/player/characteristics.utils.ts":
 /*!***************************************************************************************************************************!*\
   !*** C:/Users/nicolasc/PROJETS/dungeon-dragons-client/libs/dungeon-dragons-model/src/lib/player/characteristics.utils.ts ***!
@@ -636,17 +659,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _dungeon_dragons_model_player__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @dungeon-dragons-model/player */ "../../libs/dungeon-dragons-model/src/lib/player/index.ts");
 /* harmony import */ var _ngxs_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngxs/store */ "../../node_modules/@ngxs/store/fesm5/ngxs-store.js");
 /* harmony import */ var _shared_store_player__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shared/store/player */ "./src/app/shared/store/player/index.ts");
-var __assign = (undefined && undefined.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -671,7 +683,25 @@ var CreatePlayerComponent = /** @class */ (function () {
         });
     }
     CreatePlayerComponent.prototype.createPlayer = function () {
-        var newPlayer = __assign({}, this.createPlayerForm.getRawValue(), { strength: 10, dexterity: 10, constitution: 10, intelligence: 10, wisdom: 10, charisma: 10 });
+        var defaultPlayerCharacteristics = {
+            strength: { characteristic: 'STRENGTH', value: 10, savingThrow: false },
+            dexterity: { characteristic: 'DEXTERITY', value: 10, savingThrow: false },
+            constitution: { characteristic: 'CONSTITUTION', value: 10, savingThrow: false },
+            intelligence: { characteristic: 'INTELLIGENCE', value: 10, savingThrow: false },
+            wisdom: { characteristic: 'WISDOM', value: 10, savingThrow: false },
+            charisma: { characteristic: 'CHARISMA', value: 10, savingThrow: false }
+        };
+        var newPlayer = {
+            name: this.createPlayerForm.get('name').value,
+            race: this.createPlayerForm.get('race').value,
+            level: 1,
+            characteristics: defaultPlayerCharacteristics,
+            weapons: [],
+            equipments: [],
+            expandables: [],
+            otherItems: [],
+            actions: []
+        };
         this.store.dispatch(new _shared_store_player__WEBPACK_IMPORTED_MODULE_4__["CreatePlayer"](newPlayer));
     };
     CreatePlayerComponent = __decorate([
@@ -1176,7 +1206,7 @@ var PlayerActionsComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-form-field fxFlex=\"90\">\n  <input matInput\n         [formControl]=\"characteristicControl\"\n         [placeholder]=\"placeholder\"\n         type=\"number\"\n         min=\"0\">\n</mat-form-field>\n\n<div matBadge=\"{{ modifier }}\"\n     matBadgeOverlap=\"false\"\n     [class.positive]=\"modifier > 0\"\n     [class.negative]=\"modifier < 0\"\n     class=\"characteristic-modifier\"></div>\n\n"
+module.exports = "<mat-checkbox [formControl]=\"characteristicForm.get('savingThrow')\"\n              matTooltip=\"Jet de Sauvegarde\"\n              class=\"characteristic_saving-throw\">\n</mat-checkbox>\n\n<mat-form-field fxFlex=\"75\">\n  <input matInput\n         [formControl]=\"characteristicForm.get('value')\"\n         [placeholder]=\"placeholder\"\n         type=\"number\"\n         min=\"0\"\n         required>\n</mat-form-field>\n\n<div matBadge=\"{{ modifier }}\"\n     matBadgeOverlap=\"false\"\n     [class.positive]=\"modifier > 0\"\n     [class.negative]=\"modifier < 0\"\n     class=\"characteristic_modifier\"></div>\n\n"
 
 /***/ }),
 
@@ -1187,7 +1217,7 @@ module.exports = "<mat-form-field fxFlex=\"90\">\n  <input matInput\n         [f
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* Primary */\n/* Accent */\n.characteristic-modifier {\n  right: 15px;\n  top: 25px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9kdW5nZW9uLWRyYWdvbnMtY2xpZW50L3NyYy9hcHAvcGxheWVyc2hlZXQvcGxheWVyLWNoYXJhY3RlcmlzdGljcy9jaGFyYWN0ZXJpc3RpYy1jb250cm9sL0M6XFxVc2Vyc1xcbmljb2xhc2NcXFBST0pFVFNcXGR1bmdlb24tZHJhZ29ucy1jbGllbnQvYXBwXFxkdW5nZW9uLWRyYWdvbnMtY2xpZW50XFxzcmNcXHN0eWxlc1xcdmFyaWFibGVzLnNjc3MiLCJhcHAvZHVuZ2Vvbi1kcmFnb25zLWNsaWVudC9zcmMvYXBwL3BsYXllcnNoZWV0L3BsYXllci1jaGFyYWN0ZXJpc3RpY3MvY2hhcmFjdGVyaXN0aWMtY29udHJvbC9DOlxcVXNlcnNcXG5pY29sYXNjXFxQUk9KRVRTXFxkdW5nZW9uLWRyYWdvbnMtY2xpZW50L2FwcFxcZHVuZ2Vvbi1kcmFnb25zLWNsaWVudFxcc3JjXFxhcHBcXHBsYXllcnNoZWV0XFxwbGF5ZXItY2hhcmFjdGVyaXN0aWNzXFxjaGFyYWN0ZXJpc3RpYy1jb250cm9sXFxjaGFyYWN0ZXJpc3RpYy1jb250cm9sLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVlBLFlBQUE7QUFrQ0EsV0FBQTtBQzFDRTtFQUNFLFdBQVc7RUFDWCxTQUFTLEVBQUEiLCJmaWxlIjoiYXBwL2R1bmdlb24tZHJhZ29ucy1jbGllbnQvc3JjL2FwcC9wbGF5ZXJzaGVldC9wbGF5ZXItY2hhcmFjdGVyaXN0aWNzL2NoYXJhY3RlcmlzdGljLWNvbnRyb2wvY2hhcmFjdGVyaXN0aWMtY29udHJvbC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIiRwcmltYXJ5LWNvbG9yLWRhcms6ICM0NTVBNjQ7XHJcbiRwcmltYXJ5LWNvbG9yOiAjNjA3RDhCO1xyXG4kcHJpbWFyeS1jb2xvci1saWdodDogI0NGRDhEQztcclxuJHByaW1hcnktY29sb3ItdGV4dDogI0ZGRkZGRjtcclxuJGFjY2VudC1jb2xvcjogIzAwOTY4ODtcclxuJHByaW1hcnktdGV4dC1jb2xvcjogIzIxMjEyMTtcclxuJHNlY29uZGFyeS10ZXh0LWNvbG9yOiAjNzU3NTc1O1xyXG4kZGl2aWRlci1jb2xvcjogI0JEQkRCRDtcclxuXHJcbiRkZC1zdWNjZXNzOiAkYWNjZW50LWNvbG9yO1xyXG4kZGQtZXJyb3I6ICNCMDAwMjA7XHJcblxyXG4vKiBQcmltYXJ5ICovXHJcbiRkZC1ibHVlZ3JleTogKFxyXG4gIDUwIDogI2VjZWZmMSxcclxuICAxMDAgOiAjY2ZkOGRjLFxyXG4gIDIwMCA6ICNiMGJlYzUsXHJcbiAgMzAwIDogIzkwYTRhZSxcclxuICA0MDAgOiAjNzg5MTljLFxyXG4gIDUwMCA6ICM2MDdkOGIsXHJcbiAgNjAwIDogIzU4NzU4MyxcclxuICA3MDAgOiAjNGU2YTc4LFxyXG4gIDgwMCA6ICM0NDYwNmUsXHJcbiAgOTAwIDogIzMzNGQ1YixcclxuICBBMTAwIDogI2FiZTFmZixcclxuICBBMjAwIDogIzc4Y2VmZixcclxuICBBNDAwIDogIzQ1YmNmZixcclxuICBBNzAwIDogIzJiYjNmZixcclxuICBjb250cmFzdDogKFxyXG4gICAgNTAgOiAjMDAwMDAwLFxyXG4gICAgMTAwIDogIzAwMDAwMCxcclxuICAgIDIwMCA6ICMwMDAwMDAsXHJcbiAgICAzMDAgOiAjMDAwMDAwLFxyXG4gICAgNDAwIDogIzAwMDAwMCxcclxuICAgIDUwMCA6ICNmZmZmZmYsXHJcbiAgICA2MDAgOiAjZmZmZmZmLFxyXG4gICAgNzAwIDogI2ZmZmZmZixcclxuICAgIDgwMCA6ICNmZmZmZmYsXHJcbiAgICA5MDAgOiAjZmZmZmZmLFxyXG4gICAgQTEwMCA6ICMwMDAwMDAsXHJcbiAgICBBMjAwIDogIzAwMDAwMCxcclxuICAgIEE0MDAgOiAjMDAwMDAwLFxyXG4gICAgQTcwMCA6ICMwMDAwMDAsXHJcbiAgKVxyXG4pO1xyXG5cclxuLyogQWNjZW50ICovXHJcbiRkZC10ZWFsOiAoXHJcbiAgNTAgOiAjZTBmMmYxLFxyXG4gIDEwMCA6ICNiM2UwZGIsXHJcbiAgMjAwIDogIzgwY2JjNCxcclxuICAzMDAgOiAjNGRiNmFjLFxyXG4gIDQwMCA6ICMyNmE2OWEsXHJcbiAgNTAwIDogIzAwOTY4OCxcclxuICA2MDAgOiAjMDA4ZTgwLFxyXG4gIDcwMCA6ICMwMDgzNzUsXHJcbiAgODAwIDogIzAwNzk2YixcclxuICA5MDAgOiAjMDA2ODU4LFxyXG4gIEExMDAgOiAjOTdmZmVjLFxyXG4gIEEyMDAgOiAjNjRmZmUzLFxyXG4gIEE0MDAgOiAjMzFmZmRhLFxyXG4gIEE3MDAgOiAjMThmZmQ1LFxyXG4gIGNvbnRyYXN0OiAoXHJcbiAgICA1MCA6ICMwMDAwMDAsXHJcbiAgICAxMDAgOiAjMDAwMDAwLFxyXG4gICAgMjAwIDogIzAwMDAwMCxcclxuICAgIDMwMCA6ICMwMDAwMDAsXHJcbiAgICA0MDAgOiAjZmZmZmZmLFxyXG4gICAgNTAwIDogI2ZmZmZmZixcclxuICAgIDYwMCA6ICNmZmZmZmYsXHJcbiAgICA3MDAgOiAjZmZmZmZmLFxyXG4gICAgODAwIDogI2ZmZmZmZixcclxuICAgIDkwMCA6ICNmZmZmZmYsXHJcbiAgICBBMTAwIDogIzAwMDAwMCxcclxuICAgIEEyMDAgOiAjMDAwMDAwLFxyXG4gICAgQTQwMCA6ICMwMDAwMDAsXHJcbiAgICBBNzAwIDogIzAwMDAwMCxcclxuICApXHJcbik7XHJcbiIsIi8vbm9pbnNwZWN0aW9uIENzc1Vua25vd25UYXJnZXRcclxuQGltcG9ydCAnfmFwcC9kdW5nZW9uLWRyYWdvbnMtY2xpZW50L3NyYy9zdHlsZXMvdmFyaWFibGVzJztcclxuXHJcbi5jaGFyYWN0ZXJpc3RpYyB7XHJcbiAgJi1tb2RpZmllciB7XHJcbiAgICByaWdodDogMTVweDtcclxuICAgIHRvcDogMjVweDtcclxuICB9XHJcbn1cclxuIl19 */"
+module.exports = "/* Primary */\n/* Accent */\n.characteristic_saving-throw {\n  margin-top: 20px;\n  margin-right: 10px;\n  height: -webkit-min-content;\n  height: -moz-min-content;\n  height: min-content; }\n.characteristic_modifier {\n  right: 15px;\n  top: 30px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9kdW5nZW9uLWRyYWdvbnMtY2xpZW50L3NyYy9hcHAvcGxheWVyc2hlZXQvcGxheWVyLWNoYXJhY3RlcmlzdGljcy9jaGFyYWN0ZXJpc3RpYy1jb250cm9sL0M6XFxVc2Vyc1xcbmljb2xhc2NcXFBST0pFVFNcXGR1bmdlb24tZHJhZ29ucy1jbGllbnQvYXBwXFxkdW5nZW9uLWRyYWdvbnMtY2xpZW50XFxzcmNcXHN0eWxlc1xcdmFyaWFibGVzLnNjc3MiLCJhcHAvZHVuZ2Vvbi1kcmFnb25zLWNsaWVudC9zcmMvYXBwL3BsYXllcnNoZWV0L3BsYXllci1jaGFyYWN0ZXJpc3RpY3MvY2hhcmFjdGVyaXN0aWMtY29udHJvbC9DOlxcVXNlcnNcXG5pY29sYXNjXFxQUk9KRVRTXFxkdW5nZW9uLWRyYWdvbnMtY2xpZW50L2FwcFxcZHVuZ2Vvbi1kcmFnb25zLWNsaWVudFxcc3JjXFxhcHBcXHBsYXllcnNoZWV0XFxwbGF5ZXItY2hhcmFjdGVyaXN0aWNzXFxjaGFyYWN0ZXJpc3RpYy1jb250cm9sXFxjaGFyYWN0ZXJpc3RpYy1jb250cm9sLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVlBLFlBQUE7QUFrQ0EsV0FBQTtBQzFDRTtFQUNFLGdCQUFnQjtFQUNoQixrQkFBa0I7RUFDbEIsMkJBQW1CO0VBQW5CLHdCQUFtQjtFQUFuQixtQkFBbUIsRUFBQTtBQUdyQjtFQUNFLFdBQVc7RUFDWCxTQUFTLEVBQUEiLCJmaWxlIjoiYXBwL2R1bmdlb24tZHJhZ29ucy1jbGllbnQvc3JjL2FwcC9wbGF5ZXJzaGVldC9wbGF5ZXItY2hhcmFjdGVyaXN0aWNzL2NoYXJhY3RlcmlzdGljLWNvbnRyb2wvY2hhcmFjdGVyaXN0aWMtY29udHJvbC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIiRwcmltYXJ5LWNvbG9yLWRhcms6ICM0NTVBNjQ7XHJcbiRwcmltYXJ5LWNvbG9yOiAjNjA3RDhCO1xyXG4kcHJpbWFyeS1jb2xvci1saWdodDogI0NGRDhEQztcclxuJHByaW1hcnktY29sb3ItdGV4dDogI0ZGRkZGRjtcclxuJGFjY2VudC1jb2xvcjogIzAwOTY4ODtcclxuJHByaW1hcnktdGV4dC1jb2xvcjogIzIxMjEyMTtcclxuJHNlY29uZGFyeS10ZXh0LWNvbG9yOiAjNzU3NTc1O1xyXG4kZGl2aWRlci1jb2xvcjogI0JEQkRCRDtcclxuXHJcbiRkZC1zdWNjZXNzOiAkYWNjZW50LWNvbG9yO1xyXG4kZGQtZXJyb3I6ICNCMDAwMjA7XHJcblxyXG4vKiBQcmltYXJ5ICovXHJcbiRkZC1ibHVlZ3JleTogKFxyXG4gIDUwIDogI2VjZWZmMSxcclxuICAxMDAgOiAjY2ZkOGRjLFxyXG4gIDIwMCA6ICNiMGJlYzUsXHJcbiAgMzAwIDogIzkwYTRhZSxcclxuICA0MDAgOiAjNzg5MTljLFxyXG4gIDUwMCA6ICM2MDdkOGIsXHJcbiAgNjAwIDogIzU4NzU4MyxcclxuICA3MDAgOiAjNGU2YTc4LFxyXG4gIDgwMCA6ICM0NDYwNmUsXHJcbiAgOTAwIDogIzMzNGQ1YixcclxuICBBMTAwIDogI2FiZTFmZixcclxuICBBMjAwIDogIzc4Y2VmZixcclxuICBBNDAwIDogIzQ1YmNmZixcclxuICBBNzAwIDogIzJiYjNmZixcclxuICBjb250cmFzdDogKFxyXG4gICAgNTAgOiAjMDAwMDAwLFxyXG4gICAgMTAwIDogIzAwMDAwMCxcclxuICAgIDIwMCA6ICMwMDAwMDAsXHJcbiAgICAzMDAgOiAjMDAwMDAwLFxyXG4gICAgNDAwIDogIzAwMDAwMCxcclxuICAgIDUwMCA6ICNmZmZmZmYsXHJcbiAgICA2MDAgOiAjZmZmZmZmLFxyXG4gICAgNzAwIDogI2ZmZmZmZixcclxuICAgIDgwMCA6ICNmZmZmZmYsXHJcbiAgICA5MDAgOiAjZmZmZmZmLFxyXG4gICAgQTEwMCA6ICMwMDAwMDAsXHJcbiAgICBBMjAwIDogIzAwMDAwMCxcclxuICAgIEE0MDAgOiAjMDAwMDAwLFxyXG4gICAgQTcwMCA6ICMwMDAwMDAsXHJcbiAgKVxyXG4pO1xyXG5cclxuLyogQWNjZW50ICovXHJcbiRkZC10ZWFsOiAoXHJcbiAgNTAgOiAjZTBmMmYxLFxyXG4gIDEwMCA6ICNiM2UwZGIsXHJcbiAgMjAwIDogIzgwY2JjNCxcclxuICAzMDAgOiAjNGRiNmFjLFxyXG4gIDQwMCA6ICMyNmE2OWEsXHJcbiAgNTAwIDogIzAwOTY4OCxcclxuICA2MDAgOiAjMDA4ZTgwLFxyXG4gIDcwMCA6ICMwMDgzNzUsXHJcbiAgODAwIDogIzAwNzk2YixcclxuICA5MDAgOiAjMDA2ODU4LFxyXG4gIEExMDAgOiAjOTdmZmVjLFxyXG4gIEEyMDAgOiAjNjRmZmUzLFxyXG4gIEE0MDAgOiAjMzFmZmRhLFxyXG4gIEE3MDAgOiAjMThmZmQ1LFxyXG4gIGNvbnRyYXN0OiAoXHJcbiAgICA1MCA6ICMwMDAwMDAsXHJcbiAgICAxMDAgOiAjMDAwMDAwLFxyXG4gICAgMjAwIDogIzAwMDAwMCxcclxuICAgIDMwMCA6ICMwMDAwMDAsXHJcbiAgICA0MDAgOiAjZmZmZmZmLFxyXG4gICAgNTAwIDogI2ZmZmZmZixcclxuICAgIDYwMCA6ICNmZmZmZmYsXHJcbiAgICA3MDAgOiAjZmZmZmZmLFxyXG4gICAgODAwIDogI2ZmZmZmZixcclxuICAgIDkwMCA6ICNmZmZmZmYsXHJcbiAgICBBMTAwIDogIzAwMDAwMCxcclxuICAgIEEyMDAgOiAjMDAwMDAwLFxyXG4gICAgQTQwMCA6ICMwMDAwMDAsXHJcbiAgICBBNzAwIDogIzAwMDAwMCxcclxuICApXHJcbik7XHJcbiIsIi8vbm9pbnNwZWN0aW9uIENzc1Vua25vd25UYXJnZXRcclxuQGltcG9ydCAnfmFwcC9kdW5nZW9uLWRyYWdvbnMtY2xpZW50L3NyYy9zdHlsZXMvdmFyaWFibGVzJztcclxuXHJcbi5jaGFyYWN0ZXJpc3RpYyB7XHJcbiAgJl9zYXZpbmctdGhyb3cge1xyXG4gICAgbWFyZ2luLXRvcDogMjBweDtcclxuICAgIG1hcmdpbi1yaWdodDogMTBweDtcclxuICAgIGhlaWdodDogbWluLWNvbnRlbnQ7XHJcbiAgfVxyXG5cclxuICAmX21vZGlmaWVyIHtcclxuICAgIHJpZ2h0OiAxNXB4O1xyXG4gICAgdG9wOiAzMHB4O1xyXG4gIH1cclxufVxyXG4iXX0= */"
 
 /***/ }),
 
@@ -1218,6 +1248,17 @@ var __extends = (undefined && undefined.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1233,18 +1274,25 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var CharacteristicControlComponent = /** @class */ (function (_super) {
     __extends(CharacteristicControlComponent, _super);
-    function CharacteristicControlComponent() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    function CharacteristicControlComponent(formBuilder) {
+        var _this = _super.call(this) || this;
+        _this.characteristicForm = formBuilder.group({
+            value: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            savingThrow: [false]
+        });
+        return _this;
     }
     CharacteristicControlComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.willUnsubscribe(this.characteristicControl.valueChanges.subscribe(function (newCharacteristicValue) {
-            _this.setModifier(newCharacteristicValue);
+        this.characteristicForm.patchValue(this.characteristicControl.value);
+        this.setModifier(this.characteristicForm.value.value);
+        this.willUnsubscribe(this.characteristicForm.get('value').valueChanges
+            .subscribe(function (newCharacteristicValue) { return _this.setModifier(newCharacteristicValue); }), this.characteristicForm.valueChanges.subscribe(function (newCharacteristic) {
+            _this.characteristicControl.patchValue(__assign({}, _this.characteristicControl.value, { value: newCharacteristic.value, savingThrow: newCharacteristic.savingThrow }));
         }));
-        this.setModifier(this.characteristicControl.value);
     };
-    CharacteristicControlComponent.prototype.setModifier = function (characteristicValue) {
-        var newModifier = Object(_dungeon_dragons_model_player_characteristics_utils__WEBPACK_IMPORTED_MODULE_2__["calculateModifier"])(characteristicValue);
+    CharacteristicControlComponent.prototype.setModifier = function (characteristic) {
+        var newModifier = Object(_dungeon_dragons_model_player_characteristics_utils__WEBPACK_IMPORTED_MODULE_2__["calculateModifier"])(characteristic);
         if (newModifier > 0) {
             this.modifier = "+" + newModifier;
         }
@@ -1265,7 +1313,8 @@ var CharacteristicControlComponent = /** @class */ (function (_super) {
             selector: 'dd-characteristic-control',
             template: __webpack_require__(/*! ./characteristic-control.component.html */ "./src/app/playersheet/player-characteristics/characteristic-control/characteristic-control.component.html"),
             styles: [__webpack_require__(/*! ./characteristic-control.component.scss */ "./src/app/playersheet/player-characteristics/characteristic-control/characteristic-control.component.scss")]
-        })
+        }),
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]])
     ], CharacteristicControlComponent);
     return CharacteristicControlComponent;
 }(_core__WEBPACK_IMPORTED_MODULE_3__["AbstractSubscriptionsDestroyer"]));
@@ -1281,7 +1330,7 @@ var CharacteristicControlComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"playerForm\">\r\n\r\n  <div fxLayout=\"row wrap\">\r\n    <mat-form-field fxFlex=\"30\"\r\n                    fxFlex.xs=\"75\">\r\n      <input matInput\r\n             placeholder=\"Nom du personnage\"\r\n             formControlName=\"name\">\r\n    </mat-form-field>\r\n\r\n    <mat-form-field fxFlex=\"10\"\r\n                    fxFlex.xs=\"25\">\r\n      <input matInput\r\n             placeholder=\"Niveau\"\r\n             formControlName=\"level\"\r\n             type=\"number\"\r\n             min=\"1\">\r\n    </mat-form-field>\r\n\r\n    <mat-form-field fxFlex=\"20\"\r\n                    fxFlex.xs=\"100\">\r\n      <mat-select formControlName=\"race\"\r\n                  placeholder=\"Race\"\r\n                  required>\r\n        <mat-option *ngFor=\"let race of races | keyvalue | sort:'value'\"\r\n                    [value]=\"race.key\">{{ race.value }}</mat-option>\r\n      </mat-select>\r\n    </mat-form-field>\r\n  </div>\r\n\r\n  <div fxLayout=\"row wrap\">\r\n    <div fxFlex=\"30\"\r\n         fxFlex.xs=\"48\"\r\n         fxLayout=\"row wrap\">\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('strength')\"\r\n                                 placeholder=\"Force\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('dexterity')\"\r\n                                 placeholder=\"Dextérité\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('constitution')\"\r\n                                 placeholder=\"Constitution\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n    </div>\r\n\r\n    <div fxFlex.xs=\"4\"></div>\r\n\r\n    <div fxFlex=\"30\"\r\n         fxFlex.xs=\"48\"\r\n         fxLayout=\"row wrap\">\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('intelligence')\"\r\n                                 placeholder=\"Intelligence\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('wisdom')\"\r\n                                 placeholder=\"Sagesse\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('charisma')\"\r\n                                 placeholder=\"Charisme\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n    </div>\r\n  </div>\r\n\r\n</form>\r\n"
+module.exports = "<form [formGroup]=\"playerForm\">\r\n\r\n  <div fxLayout=\"row wrap\">\r\n    <mat-form-field fxFlex=\"30\"\r\n                    fxFlex.xs=\"75\">\r\n      <input matInput\r\n             placeholder=\"Nom du personnage\"\r\n             formControlName=\"name\">\r\n    </mat-form-field>\r\n\r\n    <mat-form-field fxFlex=\"10\"\r\n                    fxFlex.xs=\"25\">\r\n      <input matInput\r\n             placeholder=\"Niveau\"\r\n             formControlName=\"level\"\r\n             type=\"number\"\r\n             min=\"1\">\r\n    </mat-form-field>\r\n\r\n    <mat-form-field fxFlex=\"20\"\r\n                    fxFlex.xs=\"100\">\r\n      <mat-select formControlName=\"race\"\r\n                  placeholder=\"Race\"\r\n                  required>\r\n        <mat-option *ngFor=\"let race of races | keyvalue | sort:'value'\"\r\n                    [value]=\"race.key\">{{ race.value }}</mat-option>\r\n      </mat-select>\r\n    </mat-form-field>\r\n  </div>\r\n\r\n  <div fxLayout=\"row wrap\">\r\n    <div fxFlex=\"30\"\r\n         fxFlex.xs=\"48\"\r\n         fxLayout=\"row wrap\">\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('characteristics').get('strength')\"\r\n                                 placeholder=\"Force\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('characteristics').get('dexterity')\"\r\n                                 placeholder=\"Dextérité\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('characteristics').get('constitution')\"\r\n                                 placeholder=\"Constitution\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n    </div>\r\n\r\n    <div fxFlex.xs=\"4\"></div>\r\n\r\n    <div fxFlex=\"30\"\r\n         fxFlex.xs=\"48\"\r\n         fxLayout=\"row wrap\">\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('characteristics').get('intelligence')\"\r\n                                 placeholder=\"Intelligence\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('characteristics').get('wisdom')\"\r\n                                 placeholder=\"Sagesse\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('characteristics').get('charisma')\"\r\n                                 placeholder=\"Charisme\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n    </div>\r\n  </div>\r\n\r\n</form>\r\n"
 
 /***/ }),
 
@@ -1375,12 +1424,14 @@ var PlayerCharacteristicsComponent = /** @class */ (function (_super) {
             name: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             level: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             race: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            strength: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            dexterity: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            constitution: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            intelligence: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            wisdom: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            charisma: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
+            characteristics: formBuilder.group({
+                strength: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                dexterity: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                constitution: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                intelligence: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                wisdom: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+                charisma: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
+            })
         });
         _this.characteristicsForm = _this.playerForm.get('characteristics');
         _this.willUnsubscribe(_this.player$.subscribe(_this.loadPlayer));
@@ -1403,7 +1454,8 @@ var PlayerCharacteristicsComponent = /** @class */ (function (_super) {
         }
     };
     PlayerCharacteristicsComponent.prototype.extractPlayerFromForm = function () {
-        var formValue = this.playerForm.getRawValue();
+        var formRawValue = this.playerForm.getRawValue();
+        var formValue = __assign({}, formRawValue, { characteristics: __assign({}, formRawValue.characteristics, { id: this.player.characteristics.id }) });
         return __assign({}, this.player, formValue);
     };
     __decorate([
@@ -1475,10 +1527,12 @@ var PlayerCharacteristicsModule = /** @class */ (function () {
                 _angular_flex_layout__WEBPACK_IMPORTED_MODULE_2__["FlexModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatBadgeModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatButtonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatCheckboxModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatFormFieldModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatIconModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatInputModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSelectModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTooltipModule"],
                 _shared_pipes_pipes_module__WEBPACK_IMPORTED_MODULE_5__["PipesModule"]
             ]
         })
@@ -3189,18 +3243,22 @@ var UpdatePlayer = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TESTING_PLAYER", function() { return TESTING_PLAYER; });
 /* harmony import */ var _dungeon_dragons_model_player__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @dungeon-dragons-model/player */ "../../libs/dungeon-dragons-model/src/lib/player/index.ts");
+/* harmony import */ var _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @dungeon-dragons-model/player/characteristic.enum */ "../../libs/dungeon-dragons-model/src/lib/player/characteristic.enum.ts");
+
 
 var TESTING_PLAYER = {
     id: 0,
     name: 'John Doe',
     race: _dungeon_dragons_model_player__WEBPACK_IMPORTED_MODULE_0__["Race"].DRAGONBORN,
     level: 1,
-    strength: 10,
-    dexterity: 10,
-    constitution: 10,
-    intelligence: 10,
-    wisdom: 10,
-    charisma: 10,
+    characteristics: {
+        strength: { characteristic: _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_1__["Characteristic"].STRENGTH, value: 10, savingThrow: false },
+        dexterity: { characteristic: _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_1__["Characteristic"].DEXTERITY, value: 10, savingThrow: false },
+        constitution: { characteristic: _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_1__["Characteristic"].CONSTITUTION, value: 10, savingThrow: false },
+        intelligence: { characteristic: _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_1__["Characteristic"].INTELLIGENCE, value: 10, savingThrow: false },
+        wisdom: { characteristic: _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_1__["Characteristic"].WISDOM, value: 10, savingThrow: false },
+        charisma: { characteristic: _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_1__["Characteristic"].CHARISMA, value: 10, savingThrow: false }
+    },
     weapons: [],
     equipments: [],
     expandables: [],
