@@ -521,8 +521,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DdCoreModule", function() { return DdCoreModule; });
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ "../../node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _shared_helpers_helpers_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/helpers/helpers.module */ "./src/app/shared/helpers/helpers.module.ts");
-/* harmony import */ var _http_error_interceptor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./http-error.interceptor */ "./src/app/core/http-error.interceptor.ts");
+/* harmony import */ var ngx_logger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-logger */ "../../node_modules/ngx-logger/esm5/ngx-logger.js");
+/* harmony import */ var _shared_helpers_helpers_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../shared/helpers/helpers.module */ "./src/app/shared/helpers/helpers.module.ts");
+/* harmony import */ var _http_error_interceptor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./http-error.interceptor */ "./src/app/core/http-error.interceptor.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -533,14 +534,18 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var DdCoreModule = /** @class */ (function () {
     function DdCoreModule() {
     }
     DdCoreModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            imports: [_shared_helpers_helpers_module__WEBPACK_IMPORTED_MODULE_2__["HelpersModule"]],
+            imports: [
+                _shared_helpers_helpers_module__WEBPACK_IMPORTED_MODULE_3__["HelpersModule"],
+                ngx_logger__WEBPACK_IMPORTED_MODULE_2__["LoggerModule"].forRoot({ level: ngx_logger__WEBPACK_IMPORTED_MODULE_2__["NgxLoggerLevel"].DEBUG })
+            ],
             providers: [
-                { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HTTP_INTERCEPTORS"], useClass: _http_error_interceptor__WEBPACK_IMPORTED_MODULE_3__["HttpErrorInterceptor"], multi: true }
+                { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HTTP_INTERCEPTORS"], useClass: _http_error_interceptor__WEBPACK_IMPORTED_MODULE_4__["HttpErrorInterceptor"], multi: true }
             ]
         })
     ], DdCoreModule);
@@ -2503,7 +2508,7 @@ var WeaponEditionDialogComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>{{weapon.name}}</h1>\n\n<mat-dialog-content>\n  <div>\n    Calcul : 1d20 {{characModifier | modifier:true}} ({{weapon.characteristic | enumValue:characteristics}})\n    {{player.bonus | modifier:true}} (Bonus de maîtrise)\n  </div>\n  <p [class.critical]=\"result.rolled[0] === 20\">Résultat du dé : {{result.rolled}}</p>\n  <p>Résultat final : {{result.result}}</p>\n</mat-dialog-content>\n\n<mat-dialog-actions fxLayout=\"row wrap\">\n  <div fxFlex=\"100\"\n       fxLayoutAlign=\"end\">\n    <button mat-raised-button\n            color=\"primary\"\n            (click)=\"roll()\">\n      <span class=\"fas fa-dice-d20\"></span>\n      Lancer\n    </button>\n  </div>\n</mat-dialog-actions>\n"
+module.exports = "<div mat-dialog-title>{{weapon.name}}</div>\n\n<mat-dialog-content>\n  <div class=\"roll-result\">\n    Résultat du jet = <span class=\"final-result\">{{result.result}}</span>\n    <ul class=\"calcul\">\n      <li [class.critical]=\"result.rolled[0] === 20\">{{result.rolled}} (jet)</li>\n      <li>{{characModifier | modifier:true}} ({{weapon.characteristic | enumValue:characteristics}})</li>\n      <li>{{weapon.touch | modifier:true}} (Bonus de l'arme)</li>\n      <li>{{player.bonus | modifier:true}} (Bonus de maîtrise)</li>\n    </ul>\n  </div>\n\n  <div class=\"roll-damage\">\n    Dégâts = <span class=\"final-result\">{{damage}}</span>\n    <ul class=\"calcul\">\n      <li>{{weapon.damage | modifier:true}} (Dégâts de l'arme)</li>\n      <li>{{characModifier | modifier:true}} ({{weapon.characteristic | enumValue:characteristics}})</li>\n      <li>{{player.bonus | modifier:true}} (Bonus de maîtrise)</li>\n    </ul>\n  </div>\n</mat-dialog-content>\n\n<mat-dialog-actions fxLayout=\"row wrap\">\n  <div fxFlex=\"100\"\n       fxLayoutAlign=\"end\">\n    <button mat-raised-button\n            color=\"primary\"\n            (click)=\"roll()\">\n      <span class=\"fas fa-dice-d20\"></span>\n      Lancer\n    </button>\n  </div>\n</mat-dialog-actions>\n"
 
 /***/ }),
 
@@ -2514,7 +2519,7 @@ module.exports = "<h1 mat-dialog-title>{{weapon.name}}</h1>\n\n<mat-dialog-conte
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".critical {\n  font-weight: bold; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9kdW5nZW9uLWRyYWdvbnMtY2xpZW50L3NyYy9hcHAvcGxheWVyc2hlZXQvcGxheWVyLWludmVudG9yeS9wbGF5ZXItaW52ZW50b3J5LXdlYXBvbnMvd2VhcG9uLXJvbGwtZGlhbG9nL0M6XFxVc2Vyc1xcbmljb2xhc2NcXFBST0pFVFNcXGR1bmdlb24tZHJhZ29ucy1jbGllbnQvYXBwXFxkdW5nZW9uLWRyYWdvbnMtY2xpZW50XFxzcmNcXGFwcFxccGxheWVyc2hlZXRcXHBsYXllci1pbnZlbnRvcnlcXHBsYXllci1pbnZlbnRvcnktd2VhcG9uc1xcd2VhcG9uLXJvbGwtZGlhbG9nXFx3ZWFwb24tcm9sbC1kaWFsb2cuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxpQkFBaUIsRUFBQSIsImZpbGUiOiJhcHAvZHVuZ2Vvbi1kcmFnb25zLWNsaWVudC9zcmMvYXBwL3BsYXllcnNoZWV0L3BsYXllci1pbnZlbnRvcnkvcGxheWVyLWludmVudG9yeS13ZWFwb25zL3dlYXBvbi1yb2xsLWRpYWxvZy93ZWFwb24tcm9sbC1kaWFsb2cuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY3JpdGljYWwge1xyXG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG59XHJcbiJdfQ== */"
+module.exports = "/* Primary */\n/* Accent */\n.critical {\n  font-weight: bold; }\n.final-result {\n  font-weight: bold;\n  font-size: 20px;\n  color: #009688; }\n.roll-result {\n  margin-bottom: 5px; }\nul.calcul {\n  list-style: none;\n  -webkit-padding-start: 15px;\n          padding-inline-start: 15px;\n  margin: 0.1em; }\n.mat-dialog-actions {\n  margin-top: 20px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9kdW5nZW9uLWRyYWdvbnMtY2xpZW50L3NyYy9hcHAvcGxheWVyc2hlZXQvcGxheWVyLWludmVudG9yeS9wbGF5ZXItaW52ZW50b3J5LXdlYXBvbnMvd2VhcG9uLXJvbGwtZGlhbG9nL0M6XFxVc2Vyc1xcbmljb2xhc2NcXFBST0pFVFNcXGR1bmdlb24tZHJhZ29ucy1jbGllbnQvYXBwXFxkdW5nZW9uLWRyYWdvbnMtY2xpZW50XFxzcmNcXHN0eWxlc1xcdmFyaWFibGVzLnNjc3MiLCJhcHAvZHVuZ2Vvbi1kcmFnb25zLWNsaWVudC9zcmMvYXBwL3BsYXllcnNoZWV0L3BsYXllci1pbnZlbnRvcnkvcGxheWVyLWludmVudG9yeS13ZWFwb25zL3dlYXBvbi1yb2xsLWRpYWxvZy9DOlxcVXNlcnNcXG5pY29sYXNjXFxQUk9KRVRTXFxkdW5nZW9uLWRyYWdvbnMtY2xpZW50L2FwcFxcZHVuZ2Vvbi1kcmFnb25zLWNsaWVudFxcc3JjXFxhcHBcXHBsYXllcnNoZWV0XFxwbGF5ZXItaW52ZW50b3J5XFxwbGF5ZXItaW52ZW50b3J5LXdlYXBvbnNcXHdlYXBvbi1yb2xsLWRpYWxvZ1xcd2VhcG9uLXJvbGwtZGlhbG9nLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVlBLFlBQUE7QUFrQ0EsV0FBQTtBQzNDQTtFQUNFLGlCQUFpQixFQUFBO0FBR25CO0VBQ0UsaUJBQWlCO0VBQ2pCLGVBQWU7RUFDZixjRE5vQixFQUFBO0FDU3RCO0VBQ0Usa0JBQWtCLEVBQUE7QUFHcEI7RUFDRSxnQkFBZ0I7RUFDaEIsMkJBQTBCO1VBQTFCLDBCQUEwQjtFQUMxQixhQUFhLEVBQUE7QUFHZjtFQUNFLGdCQUFnQixFQUFBIiwiZmlsZSI6ImFwcC9kdW5nZW9uLWRyYWdvbnMtY2xpZW50L3NyYy9hcHAvcGxheWVyc2hlZXQvcGxheWVyLWludmVudG9yeS9wbGF5ZXItaW52ZW50b3J5LXdlYXBvbnMvd2VhcG9uLXJvbGwtZGlhbG9nL3dlYXBvbi1yb2xsLWRpYWxvZy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIiRwcmltYXJ5LWNvbG9yLWRhcms6ICM0NTVBNjQ7XHJcbiRwcmltYXJ5LWNvbG9yOiAjNjA3RDhCO1xyXG4kcHJpbWFyeS1jb2xvci1saWdodDogI0NGRDhEQztcclxuJHByaW1hcnktY29sb3ItdGV4dDogI0ZGRkZGRjtcclxuJGFjY2VudC1jb2xvcjogIzAwOTY4ODtcclxuJHByaW1hcnktdGV4dC1jb2xvcjogIzIxMjEyMTtcclxuJHNlY29uZGFyeS10ZXh0LWNvbG9yOiAjNzU3NTc1O1xyXG4kZGl2aWRlci1jb2xvcjogI0JEQkRCRDtcclxuXHJcbiRkZC1zdWNjZXNzOiAkYWNjZW50LWNvbG9yO1xyXG4kZGQtZXJyb3I6ICNCMDAwMjA7XHJcblxyXG4vKiBQcmltYXJ5ICovXHJcbiRkZC1ibHVlZ3JleTogKFxyXG4gIDUwIDogI2VjZWZmMSxcclxuICAxMDAgOiAjY2ZkOGRjLFxyXG4gIDIwMCA6ICNiMGJlYzUsXHJcbiAgMzAwIDogIzkwYTRhZSxcclxuICA0MDAgOiAjNzg5MTljLFxyXG4gIDUwMCA6ICM2MDdkOGIsXHJcbiAgNjAwIDogIzU4NzU4MyxcclxuICA3MDAgOiAjNGU2YTc4LFxyXG4gIDgwMCA6ICM0NDYwNmUsXHJcbiAgOTAwIDogIzMzNGQ1YixcclxuICBBMTAwIDogI2FiZTFmZixcclxuICBBMjAwIDogIzc4Y2VmZixcclxuICBBNDAwIDogIzQ1YmNmZixcclxuICBBNzAwIDogIzJiYjNmZixcclxuICBjb250cmFzdDogKFxyXG4gICAgNTAgOiAjMDAwMDAwLFxyXG4gICAgMTAwIDogIzAwMDAwMCxcclxuICAgIDIwMCA6ICMwMDAwMDAsXHJcbiAgICAzMDAgOiAjMDAwMDAwLFxyXG4gICAgNDAwIDogIzAwMDAwMCxcclxuICAgIDUwMCA6ICNmZmZmZmYsXHJcbiAgICA2MDAgOiAjZmZmZmZmLFxyXG4gICAgNzAwIDogI2ZmZmZmZixcclxuICAgIDgwMCA6ICNmZmZmZmYsXHJcbiAgICA5MDAgOiAjZmZmZmZmLFxyXG4gICAgQTEwMCA6ICMwMDAwMDAsXHJcbiAgICBBMjAwIDogIzAwMDAwMCxcclxuICAgIEE0MDAgOiAjMDAwMDAwLFxyXG4gICAgQTcwMCA6ICMwMDAwMDAsXHJcbiAgKVxyXG4pO1xyXG5cclxuLyogQWNjZW50ICovXHJcbiRkZC10ZWFsOiAoXHJcbiAgNTAgOiAjZTBmMmYxLFxyXG4gIDEwMCA6ICNiM2UwZGIsXHJcbiAgMjAwIDogIzgwY2JjNCxcclxuICAzMDAgOiAjNGRiNmFjLFxyXG4gIDQwMCA6ICMyNmE2OWEsXHJcbiAgNTAwIDogIzAwOTY4OCxcclxuICA2MDAgOiAjMDA4ZTgwLFxyXG4gIDcwMCA6ICMwMDgzNzUsXHJcbiAgODAwIDogIzAwNzk2YixcclxuICA5MDAgOiAjMDA2ODU4LFxyXG4gIEExMDAgOiAjOTdmZmVjLFxyXG4gIEEyMDAgOiAjNjRmZmUzLFxyXG4gIEE0MDAgOiAjMzFmZmRhLFxyXG4gIEE3MDAgOiAjMThmZmQ1LFxyXG4gIGNvbnRyYXN0OiAoXHJcbiAgICA1MCA6ICMwMDAwMDAsXHJcbiAgICAxMDAgOiAjMDAwMDAwLFxyXG4gICAgMjAwIDogIzAwMDAwMCxcclxuICAgIDMwMCA6ICMwMDAwMDAsXHJcbiAgICA0MDAgOiAjZmZmZmZmLFxyXG4gICAgNTAwIDogI2ZmZmZmZixcclxuICAgIDYwMCA6ICNmZmZmZmYsXHJcbiAgICA3MDAgOiAjZmZmZmZmLFxyXG4gICAgODAwIDogI2ZmZmZmZixcclxuICAgIDkwMCA6ICNmZmZmZmYsXHJcbiAgICBBMTAwIDogIzAwMDAwMCxcclxuICAgIEEyMDAgOiAjMDAwMDAwLFxyXG4gICAgQTQwMCA6ICMwMDAwMDAsXHJcbiAgICBBNzAwIDogIzAwMDAwMCxcclxuICApXHJcbik7XHJcbiIsIi8vbm9pbnNwZWN0aW9uIENzc1Vua25vd25UYXJnZXRcclxuQGltcG9ydCAnfmFwcC9kdW5nZW9uLWRyYWdvbnMtY2xpZW50L3NyYy9zdHlsZXMvdmFyaWFibGVzJztcclxuXHJcbi5jcml0aWNhbCB7XHJcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbn1cclxuXHJcbi5maW5hbC1yZXN1bHQge1xyXG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG4gIGZvbnQtc2l6ZTogMjBweDtcclxuICBjb2xvcjogJGFjY2VudC1jb2xvclxyXG59XHJcblxyXG4ucm9sbC1yZXN1bHQge1xyXG4gIG1hcmdpbi1ib3R0b206IDVweDtcclxufVxyXG5cclxudWwuY2FsY3VsIHtcclxuICBsaXN0LXN0eWxlOiBub25lO1xyXG4gIHBhZGRpbmctaW5saW5lLXN0YXJ0OiAxNXB4O1xyXG4gIG1hcmdpbjogMC4xZW07XHJcbn1cclxuXHJcbi5tYXQtZGlhbG9nLWFjdGlvbnMge1xyXG4gIG1hcmdpbi10b3A6IDIwcHg7XHJcbn1cclxuIl19 */"
 
 /***/ }),
 
@@ -2532,8 +2537,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "../../node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @dungeon-dragons-model/player/characteristic.enum */ "../../libs/dungeon-dragons-model/src/lib/player/characteristic.enum.ts");
 /* harmony import */ var _dungeon_dragons_model_player_characteristics_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @dungeon-dragons-model/player/characteristics.utils */ "../../libs/dungeon-dragons-model/src/lib/player/characteristics.utils.ts");
-/* harmony import */ var roll__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! roll */ "../../node_modules/roll/lib/index.js");
-/* harmony import */ var roll__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(roll__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var ngx_logger__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-logger */ "../../node_modules/ngx-logger/esm5/ngx-logger.js");
+/* harmony import */ var roll__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! roll */ "../../node_modules/roll/lib/index.js");
+/* harmony import */ var roll__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(roll__WEBPACK_IMPORTED_MODULE_5__);
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2551,10 +2557,12 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
 var WeaponRollDialogComponent = /** @class */ (function () {
-    function WeaponRollDialogComponent(data) {
+    function WeaponRollDialogComponent(logger, data) {
+        this.logger = logger;
         this.characteristics = _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_2__["Characteristic"];
-        this.diceRoller = new roll__WEBPACK_IMPORTED_MODULE_4___default.a();
+        this.diceRoller = new roll__WEBPACK_IMPORTED_MODULE_5___default.a();
         this.player = data.player;
         this.weapon = data.weapon;
     }
@@ -2563,11 +2571,13 @@ var WeaponRollDialogComponent = /** @class */ (function () {
         this.roll();
     };
     WeaponRollDialogComponent.prototype.roll = function () {
-        var characteristicModifier = Object(_dungeon_dragons_model_player_characteristics_utils__WEBPACK_IMPORTED_MODULE_3__["modifierToString"])(this.characModifier, true);
+        var characteristicModifierString = Object(_dungeon_dragons_model_player_characteristics_utils__WEBPACK_IMPORTED_MODULE_3__["modifierToString"])(this.characModifier, true);
         var bonusModifier = Object(_dungeon_dragons_model_player_characteristics_utils__WEBPACK_IMPORTED_MODULE_3__["modifierToString"])(this.player.bonus, true);
-        var rollString = "1d20" + characteristicModifier + bonusModifier;
-        console.log(rollString);
+        var touchModifier = Object(_dungeon_dragons_model_player_characteristics_utils__WEBPACK_IMPORTED_MODULE_3__["modifierToString"])(this.weapon.touch, true);
+        var rollString = "1d20" + characteristicModifierString + touchModifier + bonusModifier;
+        this.logger.log(rollString);
         this.result = this.diceRoller.roll(rollString);
+        this.damage = this.weapon.damage + this.characModifier + this.player.bonus;
     };
     WeaponRollDialogComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2575,8 +2585,8 @@ var WeaponRollDialogComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./weapon-roll-dialog.component.html */ "./src/app/playersheet/player-inventory/player-inventory-weapons/weapon-roll-dialog/weapon-roll-dialog.component.html"),
             styles: [__webpack_require__(/*! ./weapon-roll-dialog.component.scss */ "./src/app/playersheet/player-inventory/player-inventory-weapons/weapon-roll-dialog/weapon-roll-dialog.component.scss")]
         }),
-        __param(0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MAT_DIALOG_DATA"])),
-        __metadata("design:paramtypes", [Object])
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [ngx_logger__WEBPACK_IMPORTED_MODULE_4__["NGXLogger"], Object])
     ], WeaponRollDialogComponent);
     return WeaponRollDialogComponent;
 }());
@@ -3218,6 +3228,15 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 
+var compareObjectsByField = function (field) { return function (object1, object2) {
+    if (object1[field] < object2[field]) {
+        return -1;
+    }
+    if (object1[field] > object2[field]) {
+        return 1;
+    }
+    return 0;
+}; };
 var SortPipe = /** @class */ (function () {
     function SortPipe() {
     }
@@ -3239,15 +3258,6 @@ var SortPipe = /** @class */ (function () {
     return SortPipe;
 }());
 
-var compareObjectsByField = function (field) { return function (object1, object2) {
-    if (object1[field] < object2[field]) {
-        return -1;
-    }
-    if (object1[field] > object2[field]) {
-        return 1;
-    }
-    return 0;
-}; };
 
 
 /***/ }),
@@ -3513,23 +3523,19 @@ var UpdatePlayer = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TESTING_PLAYER", function() { return TESTING_PLAYER; });
-/* harmony import */ var _dungeon_dragons_model_player__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @dungeon-dragons-model/player */ "../../libs/dungeon-dragons-model/src/lib/player/index.ts");
-/* harmony import */ var _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @dungeon-dragons-model/player/characteristic.enum */ "../../libs/dungeon-dragons-model/src/lib/player/characteristic.enum.ts");
-
-
 var TESTING_PLAYER = {
     id: 0,
     name: 'John Doe',
-    race: _dungeon_dragons_model_player__WEBPACK_IMPORTED_MODULE_0__["Race"].DRAGONBORN,
+    race: 'DRAGONBORN',
     level: 1,
     bonus: 0,
     characteristics: {
-        strength: { characteristic: _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_1__["Characteristic"].STRENGTH, value: 10, savingThrow: false },
-        dexterity: { characteristic: _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_1__["Characteristic"].DEXTERITY, value: 10, savingThrow: false },
-        constitution: { characteristic: _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_1__["Characteristic"].CONSTITUTION, value: 10, savingThrow: false },
-        intelligence: { characteristic: _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_1__["Characteristic"].INTELLIGENCE, value: 10, savingThrow: false },
-        wisdom: { characteristic: _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_1__["Characteristic"].WISDOM, value: 10, savingThrow: false },
-        charisma: { characteristic: _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_1__["Characteristic"].CHARISMA, value: 10, savingThrow: false }
+        strength: { characteristic: 'STRENGTH', value: 10, savingThrow: false },
+        dexterity: { characteristic: 'DEXTERITY', value: 10, savingThrow: false },
+        constitution: { characteristic: 'CONSTITUTION', value: 10, savingThrow: false },
+        intelligence: { characteristic: 'INTELLIGENCE', value: 10, savingThrow: false },
+        wisdom: { characteristic: 'WISDOM', value: 10, savingThrow: false },
+        charisma: { characteristic: 'CHARISMA', value: 10, savingThrow: false }
     },
     weapons: [],
     equipments: [],
@@ -3787,8 +3793,8 @@ __webpack_require__.r(__webpack_exports__);
 if (_environments_environment__WEBPACK_IMPORTED_MODULE_3__["environment"].production) {
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["enableProdMode"])();
 }
-Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_2__["AppModule"])
-    .catch(function (err) { return console.error(err); });
+// tslint:disable-next-line:no-console
+Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformBrowserDynamic"])().bootstrapModule(_app_app_module__WEBPACK_IMPORTED_MODULE_2__["AppModule"]).catch(function (err) { return console.error(err); });
 
 
 /***/ }),
