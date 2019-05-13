@@ -1,10 +1,28 @@
 server:
   port: 9090
 spring:
-  datasource: # COMMENT ON LOCALHOST
-    platform: postgres # COMMENT ON LOCALHOST
-    driver-class-name: org.postgresql.Driver # COMMENT ON LOCALHOST
+  #  datasource: # COMMENT ON LOCALHOST
+  #    platform: postgres # COMMENT ON LOCALHOST
+  #    driver-class-name: org.postgresql.Driver # COMMENT ON LOCALHOST
   jpa:
-    database: postgresql # COMMENT ON LOCALHOST
+    #    database: postgresql # COMMENT ON LOCALHOST
     hibernate:
       ddl-auto: create
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            provider: google
+            client-id: 931822693224-ei1vicsqcerjm9cbcrungrub1iutm9cj.apps.googleusercontent.com
+            client-secret: IxUn58XWLWYFMMQFwCksP0aZ
+            client-authentication-method: basic
+            authorization-grant-type: authorization_code
+            scope:
+              - openid
+              - email
+              - profile
+              - https://www.googleapis.com/auth/tasks.readonly
+        provider:
+          google:
+            issuer-uri: https://accounts.google.com
