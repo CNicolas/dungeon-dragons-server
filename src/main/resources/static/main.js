@@ -1,5 +1,54 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["main"],{
 
+/***/ "../../libs/dungeon-dragons-model/src/lib/inventory/damage-category.enum.ts":
+/*!*****************************************************************************************************************************!*\
+  !*** C:/Users/nicolasc/PROJETS/dungeon-dragons-client/libs/dungeon-dragons-model/src/lib/inventory/damage-category.enum.ts ***!
+  \*****************************************************************************************************************************/
+/*! exports provided: DamageCategory */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DamageCategory", function() { return DamageCategory; });
+var DamageCategory;
+(function (DamageCategory) {
+    DamageCategory["PHYSICAL"] = "Physique";
+    DamageCategory["MAGICAL"] = "Magique";
+})(DamageCategory || (DamageCategory = {}));
+
+
+/***/ }),
+
+/***/ "../../libs/dungeon-dragons-model/src/lib/inventory/damage-type.enum.ts":
+/*!*************************************************************************************************************************!*\
+  !*** C:/Users/nicolasc/PROJETS/dungeon-dragons-client/libs/dungeon-dragons-model/src/lib/inventory/damage-type.enum.ts ***!
+  \*************************************************************************************************************************/
+/*! exports provided: DamageType */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DamageType", function() { return DamageType; });
+var DamageType;
+(function (DamageType) {
+    DamageType["ACID"] = "Acide";
+    DamageType["BLUDGEONING"] = "Contondant";
+    DamageType["COLD"] = "Froid";
+    DamageType["FIRE"] = "Feu";
+    DamageType["FORCE"] = "Force";
+    DamageType["LIGHTNING"] = "Foudre";
+    DamageType["NECROTIC"] = "N\u00E9crotique";
+    DamageType["PIERCING"] = "Perforant";
+    DamageType["POISON"] = "Poison";
+    DamageType["PSYCHIC"] = "Psychique";
+    DamageType["LIGHT"] = "Lumi\u00E8re";
+    DamageType["SLASHING"] = "Tranchant";
+    DamageType["SOUND"] = "Son";
+})(DamageType || (DamageType = {}));
+
+
+/***/ }),
+
 /***/ "../../libs/dungeon-dragons-model/src/lib/inventory/index.ts":
 /*!**************************************************************************************************************!*\
   !*** C:/Users/nicolasc/PROJETS/dungeon-dragons-client/libs/dungeon-dragons-model/src/lib/inventory/index.ts ***!
@@ -35,6 +84,67 @@ var WeaponRange;
     WeaponRange["LONG"] = "Longue";
     WeaponRange["EXTREME"] = "Extr\u00EAme";
 })(WeaponRange || (WeaponRange = {}));
+
+
+/***/ }),
+
+/***/ "../../libs/dungeon-dragons-model/src/lib/inventory/weapons.utils.ts":
+/*!**********************************************************************************************************************!*\
+  !*** C:/Users/nicolasc/PROJETS/dungeon-dragons-client/libs/dungeon-dragons-model/src/lib/inventory/weapons.utils.ts ***!
+  \**********************************************************************************************************************/
+/*! exports provided: getDamageCategoryByType, getDamageCategoryByTypeLabel, getDamageTypesOfCategory */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDamageCategoryByType", function() { return getDamageCategoryByType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDamageCategoryByTypeLabel", function() { return getDamageCategoryByTypeLabel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDamageTypesOfCategory", function() { return getDamageTypesOfCategory; });
+/* harmony import */ var _dungeon_dragons_model_inventory_damage_type_enum__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @dungeon-dragons-model/inventory/damage-type.enum */ "../../libs/dungeon-dragons-model/src/lib/inventory/damage-type.enum.ts");
+
+function getDamageCategoryByType(damageType) {
+    switch (damageType) {
+        case 'BLUDGEONING':
+        case 'PIERCING':
+        case 'SLASHING':
+            return 'PHYSICAL';
+        case 'ACID':
+        case 'COLD':
+        case 'FIRE':
+        case 'FORCE':
+        case 'LIGHTNING':
+        case 'NECROTIC':
+        case 'POISON':
+        case 'PSYCHIC':
+        case 'LIGHT':
+        case 'SOUND':
+            return 'MAGICAL';
+    }
+}
+function getDamageCategoryByTypeLabel(damageType) {
+    switch (damageType) {
+        case _dungeon_dragons_model_inventory_damage_type_enum__WEBPACK_IMPORTED_MODULE_0__["DamageType"].BLUDGEONING:
+        case _dungeon_dragons_model_inventory_damage_type_enum__WEBPACK_IMPORTED_MODULE_0__["DamageType"].PIERCING:
+        case _dungeon_dragons_model_inventory_damage_type_enum__WEBPACK_IMPORTED_MODULE_0__["DamageType"].SLASHING:
+            return 'PHYSICAL';
+        case _dungeon_dragons_model_inventory_damage_type_enum__WEBPACK_IMPORTED_MODULE_0__["DamageType"].ACID:
+        case _dungeon_dragons_model_inventory_damage_type_enum__WEBPACK_IMPORTED_MODULE_0__["DamageType"].COLD:
+        case _dungeon_dragons_model_inventory_damage_type_enum__WEBPACK_IMPORTED_MODULE_0__["DamageType"].FIRE:
+        case _dungeon_dragons_model_inventory_damage_type_enum__WEBPACK_IMPORTED_MODULE_0__["DamageType"].FORCE:
+        case _dungeon_dragons_model_inventory_damage_type_enum__WEBPACK_IMPORTED_MODULE_0__["DamageType"].LIGHTNING:
+        case _dungeon_dragons_model_inventory_damage_type_enum__WEBPACK_IMPORTED_MODULE_0__["DamageType"].NECROTIC:
+        case _dungeon_dragons_model_inventory_damage_type_enum__WEBPACK_IMPORTED_MODULE_0__["DamageType"].POISON:
+        case _dungeon_dragons_model_inventory_damage_type_enum__WEBPACK_IMPORTED_MODULE_0__["DamageType"].PSYCHIC:
+        case _dungeon_dragons_model_inventory_damage_type_enum__WEBPACK_IMPORTED_MODULE_0__["DamageType"].LIGHT:
+        case _dungeon_dragons_model_inventory_damage_type_enum__WEBPACK_IMPORTED_MODULE_0__["DamageType"].SOUND:
+            return 'MAGICAL';
+    }
+}
+function getDamageTypesOfCategory(damageCategory) {
+    return damageCategory === 'PHYSICAL'
+        ? ['BLUDGEONING', 'PIERCING', 'SLASHING']
+        : ['ACID', 'COLD', 'FIRE', 'FORCE', 'LIGHTNING', 'NECROTIC', 'POISON', 'PSYCHIC', 'LIGHT', 'SOUND'];
+}
 
 
 /***/ }),
@@ -725,6 +835,8 @@ var CreatePlayerComponent = /** @class */ (function () {
             race: this.createPlayerForm.get('race').value,
             level: 1,
             bonus: 0,
+            physicalDamage: 0,
+            magicalDamage: 0,
             characteristics: defaultPlayerCharacteristics,
             weapons: [],
             equipments: [],
@@ -1368,7 +1480,7 @@ var CharacteristicControlComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"playerForm\">\r\n\r\n  <div fxLayout=\"row wrap\">\r\n    <mat-form-field fxFlex=\"30\"\r\n                    fxFlex.xs=\"100\">\r\n      <input matInput\r\n             placeholder=\"Nom du personnage\"\r\n             formControlName=\"name\">\r\n    </mat-form-field>\r\n\r\n    <mat-form-field fxFlex=\"10\"\r\n                    fxFlex.xs=\"50\">\r\n      <input matInput\r\n             placeholder=\"Niveau\"\r\n             formControlName=\"level\"\r\n             type=\"number\"\r\n             min=\"1\">\r\n    </mat-form-field>\r\n\r\n    <mat-form-field fxFlex=\"10\"\r\n                    fxFlex.xs=\"50\">\r\n      <input matInput\r\n             placeholder=\"Bonus de maitrise\"\r\n             formControlName=\"bonus\"\r\n             type=\"number\"\r\n             min=\"0\">\r\n    </mat-form-field>\r\n\r\n    <mat-form-field fxFlex=\"15\"\r\n                    fxFlex.xs=\"100\">\r\n      <mat-select formControlName=\"race\"\r\n                  placeholder=\"Race\"\r\n                  required>\r\n        <mat-option *ngFor=\"let race of races | keyvalue | sort:'value'\"\r\n                    [value]=\"race.key\">{{ race.value }}</mat-option>\r\n      </mat-select>\r\n    </mat-form-field>\r\n  </div>\r\n\r\n  <div fxLayout=\"row wrap\">\r\n    <div fxFlex=\"30\"\r\n         fxFlex.xs=\"48\"\r\n         fxLayout=\"row wrap\">\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('characteristics').get('strength')\"\r\n                                 placeholder=\"Force\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('characteristics').get('dexterity')\"\r\n                                 placeholder=\"Dextérité\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('characteristics').get('constitution')\"\r\n                                 placeholder=\"Constitution\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n    </div>\r\n\r\n    <div fxFlex.xs=\"4\"></div>\r\n\r\n    <div fxFlex=\"30\"\r\n         fxFlex.xs=\"48\"\r\n         fxLayout=\"row wrap\">\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('characteristics').get('intelligence')\"\r\n                                 placeholder=\"Intelligence\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('characteristics').get('wisdom')\"\r\n                                 placeholder=\"Sagesse\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('characteristics').get('charisma')\"\r\n                                 placeholder=\"Charisme\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n    </div>\r\n  </div>\r\n\r\n</form>\r\n"
+module.exports = "<form [formGroup]=\"playerForm\">\r\n\r\n  <div fxLayout=\"row wrap\">\r\n    <mat-form-field fxFlex=\"30\"\r\n                    fxFlex.xs=\"100\">\r\n      <input matInput\r\n             placeholder=\"Nom du personnage\"\r\n             formControlName=\"name\">\r\n    </mat-form-field>\r\n\r\n    <mat-form-field fxFlex=\"10\"\r\n                    fxFlex.xs=\"50\">\r\n      <input matInput\r\n             placeholder=\"Niveau\"\r\n             formControlName=\"level\"\r\n             type=\"number\"\r\n             min=\"1\">\r\n    </mat-form-field>\r\n\r\n    <mat-form-field fxFlex=\"10\"\r\n                    fxFlex.xs=\"50\">\r\n      <input matInput\r\n             placeholder=\"Bonus de maitrise\"\r\n             formControlName=\"bonus\"\r\n             type=\"number\"\r\n             min=\"0\">\r\n    </mat-form-field>\r\n\r\n    <mat-form-field fxFlex=\"15\"\r\n                    fxFlex.xs=\"100\">\r\n      <mat-select formControlName=\"race\"\r\n                  placeholder=\"Race\"\r\n                  required>\r\n        <mat-option *ngFor=\"let race of races | keyvalue | sort:'value'\"\r\n                    [value]=\"race.key\">{{ race.value }}</mat-option>\r\n      </mat-select>\r\n    </mat-form-field>\r\n\r\n\r\n    <mat-form-field fxFlex=\"10\"\r\n                    fxFlex.xs=\"50\">\r\n      <input matInput\r\n             placeholder=\"Dégâts physiques\"\r\n             formControlName=\"physicalDamage\"\r\n             type=\"number\"\r\n             min=\"0\">\r\n    </mat-form-field>\r\n\r\n\r\n    <mat-form-field fxFlex=\"10\"\r\n                    fxFlex.xs=\"50\">\r\n      <input matInput\r\n             placeholder=\"Dégâts magiques\"\r\n             formControlName=\"magicalDamage\"\r\n             type=\"number\"\r\n             min=\"0\">\r\n    </mat-form-field>\r\n  </div>\r\n\r\n  <div fxLayout=\"row wrap\">\r\n    <div fxFlex=\"30\"\r\n         fxFlex.xs=\"48\"\r\n         fxLayout=\"row wrap\">\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('characteristics').get('strength')\"\r\n                                 placeholder=\"Force\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('characteristics').get('dexterity')\"\r\n                                 placeholder=\"Dextérité\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('characteristics').get('constitution')\"\r\n                                 placeholder=\"Constitution\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n    </div>\r\n\r\n    <div fxFlex.xs=\"4\"></div>\r\n\r\n    <div fxFlex=\"30\"\r\n         fxFlex.xs=\"48\"\r\n         fxLayout=\"row wrap\">\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('characteristics').get('intelligence')\"\r\n                                 placeholder=\"Intelligence\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('characteristics').get('wisdom')\"\r\n                                 placeholder=\"Sagesse\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n      <dd-characteristic-control [characteristicControl]=\"playerForm.get('characteristics').get('charisma')\"\r\n                                 placeholder=\"Charisme\"\r\n                                 fxFlex=\"100\"></dd-characteristic-control>\r\n    </div>\r\n  </div>\r\n\r\n</form>\r\n"
 
 /***/ }),
 
@@ -1463,6 +1575,8 @@ var PlayerCharacteristicsComponent = /** @class */ (function (_super) {
             level: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             bonus: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             race: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            physicalDamage: [0],
+            magicalDamage: [0],
             characteristics: formBuilder.group({
                 strength: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
                 dexterity: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
@@ -2267,7 +2381,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div fxLayout=\"row wrap\">\r\n  <table mat-table\r\n         [dataSource]=\"weapons\"\r\n         fxFlex=\"100\"\r\n         id=\"weapons-table\">\r\n    <ng-container matColumnDef=\"name\">\r\n      <th mat-header-cell\r\n          *matHeaderCellDef>Nom\r\n      </th>\r\n      <td mat-cell\r\n          *matCellDef=\"let weapon\">{{weapon.name}}</td>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"range\">\r\n      <th mat-header-cell\r\n          *matHeaderCellDef>\r\n        <span matTooltip=\"Portée\"\r\n              class=\"fas fa-street-view\"></span>\r\n        <span *ngIf=\"!isHandset\">Portée</span>\r\n      </th>\r\n      <td mat-cell\r\n          *matCellDef=\"let weapon\">{{weapon.range | enumValue:weaponRanges}}</td>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"touch\">\r\n      <th mat-header-cell\r\n          *matHeaderCellDef>\r\n        <span matTooltip=\"Toucher\"\r\n              class=\"fas fa-bullseye\"></span>\r\n        <span *ngIf=\"!isHandset\">Toucher</span>\r\n      </th>\r\n      <td mat-cell\r\n          *matCellDef=\"let weapon\">{{weapon.touch | modifier}}</td>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"damage\">\r\n      <th mat-header-cell\r\n          *matHeaderCellDef>\r\n        <span matTooltip=\"Dégâts\"\r\n              class=\"fas fa-fist-raised\"></span>\r\n        <span *ngIf=\"!isHandset\">Dégâts</span>\r\n      </th>\r\n      <td mat-cell\r\n          *matCellDef=\"let weapon\">{{weapon.damage}}</td>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"characteristic\">\r\n      <th mat-header-cell\r\n          *matHeaderCellDef>\r\n        <span matTooltip=\"Caractéristique\"\r\n              class=\"fas fa-address-book\"></span>\r\n        <span *ngIf=\"!isHandset\">Caractéristique</span>\r\n      </th>\r\n      <td mat-cell\r\n          *matCellDef=\"let weapon\">{{weapon.characteristic | enumValue:characteristics}}</td>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"special\">\r\n      <th mat-header-cell\r\n          *matHeaderCellDef>Special\r\n      </th>\r\n      <td mat-cell\r\n          *matCellDef=\"let weapon\">{{weapon.special}}</td>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"menu\">\r\n      <th mat-header-cell\r\n          *matHeaderCellDef>\r\n      </th>\r\n      <td mat-cell\r\n          *matCellDef=\"let weapon\">\r\n        <button mat-icon-button\r\n                color=\"accent\"\r\n                (click)=\"openWeaponRollDialog($event, weapon)\">\r\n          <span class=\"fas fa-dice-d20\"></span>\r\n        </button>\r\n      </td>\r\n    </ng-container>\r\n\r\n    <tr mat-header-row\r\n        *matHeaderRowDef=\"displayedColumns\"></tr>\r\n    <tr mat-row\r\n        *matRowDef=\"let weapon; columns: displayedColumns; let i = index\"\r\n        (click)=\"openWeaponEditionDialog(weapon, i)\"></tr>\r\n  </table>\r\n\r\n  <div fxFlex=\"100\"\r\n       fxLayoutAlign=\"end\">\r\n    <button mat-raised-button\r\n            type=\"submit\"\r\n            color=\"primary\"\r\n            (click)=\"openWeaponCreationDialog()\">\r\n      <mat-icon>add</mat-icon>\r\n      Créer une arme\r\n    </button>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div fxLayout=\"row wrap\">\r\n  <table mat-table\r\n         [dataSource]=\"weapons\"\r\n         fxFlex=\"100\"\r\n         id=\"weapons-table\">\r\n    <ng-container matColumnDef=\"name\">\r\n      <th mat-header-cell\r\n          *matHeaderCellDef>Nom\r\n      </th>\r\n      <td mat-cell\r\n          *matCellDef=\"let weapon\">{{weapon.name}}</td>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"range\">\r\n      <th mat-header-cell\r\n          *matHeaderCellDef>\r\n        <span matTooltip=\"Portée\"\r\n              class=\"fas fa-street-view\"></span>\r\n        <span *ngIf=\"!isHandset\">Portée</span>\r\n      </th>\r\n      <td mat-cell\r\n          *matCellDef=\"let weapon\">{{weapon.range | enumValue:weaponRanges}}</td>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"touch\">\r\n      <th mat-header-cell\r\n          *matHeaderCellDef>\r\n        <span matTooltip=\"Toucher\"\r\n              class=\"fas fa-bullseye\"></span>\r\n        <span *ngIf=\"!isHandset\">Toucher</span>\r\n      </th>\r\n      <td mat-cell\r\n          *matCellDef=\"let weapon\">{{weapon.touch | modifier}}</td>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"damage\">\r\n      <th mat-header-cell\r\n          *matHeaderCellDef>\r\n        <span matTooltip=\"Dégâts\"\r\n              class=\"fas fa-fist-raised\"></span>\r\n        <span *ngIf=\"!isHandset\">Dégâts</span>\r\n      </th>\r\n      <td mat-cell\r\n          *matCellDef=\"let weapon\">{{weapon.damage}}</td>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"damageType\">\r\n      <th mat-header-cell\r\n          *matHeaderCellDef>\r\n        <span matTooltip=\"Type de dégâts\"\r\n              class=\"fas fa-tools\"></span>\r\n        <span *ngIf=\"!isHandset\">Type de dégâts</span>\r\n      </th>\r\n      <td mat-cell\r\n          *matCellDef=\"let weapon\">{{weapon.damageType | enumValue:damageTypes}}</td>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"characteristic\">\r\n      <th mat-header-cell\r\n          *matHeaderCellDef>\r\n        <span matTooltip=\"Caractéristique\"\r\n              class=\"fas fa-address-book\"></span>\r\n        <span *ngIf=\"!isHandset\">Caractéristique</span>\r\n      </th>\r\n      <td mat-cell\r\n          *matCellDef=\"let weapon\">{{weapon.characteristic | enumValue:characteristics}}</td>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"special\">\r\n      <th mat-header-cell\r\n          *matHeaderCellDef>Special\r\n      </th>\r\n      <td mat-cell\r\n          *matCellDef=\"let weapon\">{{weapon.special}}</td>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"menu\">\r\n      <th mat-header-cell\r\n          *matHeaderCellDef>\r\n      </th>\r\n      <td mat-cell\r\n          *matCellDef=\"let weapon\">\r\n        <button mat-icon-button\r\n                color=\"accent\"\r\n                (click)=\"openWeaponRollDialog($event, weapon)\">\r\n          <span class=\"fas fa-dice-d20\"></span>\r\n        </button>\r\n      </td>\r\n    </ng-container>\r\n\r\n    <tr mat-header-row\r\n        *matHeaderRowDef=\"displayedColumns\"></tr>\r\n    <tr mat-row\r\n        *matRowDef=\"let weapon; columns: displayedColumns; let i = index\"\r\n        (click)=\"openWeaponEditionDialog(weapon, i)\"></tr>\r\n  </table>\r\n\r\n  <div fxFlex=\"100\"\r\n       fxLayoutAlign=\"end\">\r\n    <button mat-raised-button\r\n            type=\"submit\"\r\n            color=\"primary\"\r\n            (click)=\"openWeaponCreationDialog()\">\r\n      <mat-icon>add</mat-icon>\r\n      Créer une arme\r\n    </button>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2278,7 +2392,7 @@ module.exports = "<div fxLayout=\"row wrap\">\r\n  <table mat-table\r\n         
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvZHVuZ2Vvbi1kcmFnb25zLWNsaWVudC9zcmMvYXBwL3BsYXllcnNoZWV0L3BsYXllci1pbnZlbnRvcnkvcGxheWVyLWludmVudG9yeS13ZWFwb25zL3BsYXllci1pbnZlbnRvcnktd2VhcG9ucy5jb21wb25lbnQuc2NzcyJ9 */"
+module.exports = "@media (max-device-width: 480px) {\n  .mat-column-characteristic {\n    display: none; } }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9kdW5nZW9uLWRyYWdvbnMtY2xpZW50L3NyYy9hcHAvcGxheWVyc2hlZXQvcGxheWVyLWludmVudG9yeS9wbGF5ZXItaW52ZW50b3J5LXdlYXBvbnMvQzpcXFVzZXJzXFxuaWNvbGFzY1xcUFJPSkVUU1xcZHVuZ2Vvbi1kcmFnb25zLWNsaWVudC9hcHBcXGR1bmdlb24tZHJhZ29ucy1jbGllbnRcXHNyY1xcYXBwXFxwbGF5ZXJzaGVldFxccGxheWVyLWludmVudG9yeVxccGxheWVyLWludmVudG9yeS13ZWFwb25zXFxwbGF5ZXItaW52ZW50b3J5LXdlYXBvbnMuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRTtJQUNFLGFBQWEsRUFBQSxFQUNkIiwiZmlsZSI6ImFwcC9kdW5nZW9uLWRyYWdvbnMtY2xpZW50L3NyYy9hcHAvcGxheWVyc2hlZXQvcGxheWVyLWludmVudG9yeS9wbGF5ZXItaW52ZW50b3J5LXdlYXBvbnMvcGxheWVyLWludmVudG9yeS13ZWFwb25zLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQG1lZGlhIChtYXgtZGV2aWNlLXdpZHRoOiA0ODBweCkge1xyXG4gIC5tYXQtY29sdW1uLWNoYXJhY3RlcmlzdGljIHtcclxuICAgIGRpc3BsYXk6IG5vbmU7XHJcbiAgfVxyXG59XHJcbiJdfQ== */"
 
 /***/ }),
 
@@ -2296,11 +2410,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "../../node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "../../node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _dungeon_dragons_model_inventory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @dungeon-dragons-model/inventory */ "../../libs/dungeon-dragons-model/src/lib/inventory/index.ts");
-/* harmony import */ var _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @dungeon-dragons-model/player/characteristic.enum */ "../../libs/dungeon-dragons-model/src/lib/player/characteristic.enum.ts");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "../../node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../core */ "./src/app/core/index.ts");
-/* harmony import */ var _weapon_edition_dialog_weapon_edition_dialog_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./weapon-edition-dialog/weapon-edition-dialog.component */ "./src/app/playersheet/player-inventory/player-inventory-weapons/weapon-edition-dialog/weapon-edition-dialog.component.ts");
-/* harmony import */ var _weapon_roll_dialog_weapon_roll_dialog_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./weapon-roll-dialog/weapon-roll-dialog.component */ "./src/app/playersheet/player-inventory/player-inventory-weapons/weapon-roll-dialog/weapon-roll-dialog.component.ts");
+/* harmony import */ var _dungeon_dragons_model_inventory_damage_type_enum__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @dungeon-dragons-model/inventory/damage-type.enum */ "../../libs/dungeon-dragons-model/src/lib/inventory/damage-type.enum.ts");
+/* harmony import */ var _dungeon_dragons_model_inventory_weapons_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @dungeon-dragons-model/inventory/weapons.utils */ "../../libs/dungeon-dragons-model/src/lib/inventory/weapons.utils.ts");
+/* harmony import */ var _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @dungeon-dragons-model/player/characteristic.enum */ "../../libs/dungeon-dragons-model/src/lib/player/characteristic.enum.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "../../node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../core */ "./src/app/core/index.ts");
+/* harmony import */ var _weapon_edition_dialog_weapon_edition_dialog_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./weapon-edition-dialog/weapon-edition-dialog.component */ "./src/app/playersheet/player-inventory/player-inventory-weapons/weapon-edition-dialog/weapon-edition-dialog.component.ts");
+/* harmony import */ var _weapon_roll_dialog_weapon_roll_dialog_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./weapon-roll-dialog/weapon-roll-dialog.component */ "./src/app/playersheet/player-inventory/player-inventory-weapons/weapon-roll-dialog/weapon-roll-dialog.component.ts");
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -2332,6 +2448,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var PlayerInventoryWeaponsComponent = /** @class */ (function (_super) {
     __extends(PlayerInventoryWeaponsComponent, _super);
     function PlayerInventoryWeaponsComponent(dialog, breakpointObserver) {
@@ -2340,23 +2458,35 @@ var PlayerInventoryWeaponsComponent = /** @class */ (function (_super) {
         _this.weapons = [];
         _this.update = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         _this.weaponRanges = _dungeon_dragons_model_inventory__WEBPACK_IMPORTED_MODULE_3__["WeaponRange"];
-        _this.characteristics = _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_4__["Characteristic"];
-        _this.displayedColumns = ['name', 'range', 'touch', 'damage', 'characteristic', 'special', 'menu'];
+        _this.characteristics = _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_6__["Characteristic"];
+        _this.damageTypes = _dungeon_dragons_model_inventory_damage_type_enum__WEBPACK_IMPORTED_MODULE_4__["DamageType"];
+        _this.displayedColumns = ['name', 'range', 'touch', 'damage', 'damageType', 'characteristic', 'special', 'menu'];
         return _this;
     }
+    Object.defineProperty(PlayerInventoryWeaponsComponent.prototype, "dialogMaxWidth", {
+        get: function () {
+            return this.isHandset ? '80vw' : '50vw';
+        },
+        enumerable: true,
+        configurable: true
+    });
     PlayerInventoryWeaponsComponent.prototype.openWeaponEditionDialog = function (weapon, weaponIndex) {
         var _this = this;
-        var weaponEditionDialog = this.dialog.open(_weapon_edition_dialog_weapon_edition_dialog_component__WEBPACK_IMPORTED_MODULE_7__["WeaponEditionDialogComponent"], {
+        var weaponEditionDialog = this.dialog.open(_weapon_edition_dialog_weapon_edition_dialog_component__WEBPACK_IMPORTED_MODULE_9__["WeaponEditionDialogComponent"], {
             autoFocus: false,
-            data: { weapon: weapon }
+            data: { weapon: weapon },
+            maxWidth: this.dialogMaxWidth
         });
         weaponEditionDialog.afterClosed()
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["filter"])(function (newWeapon) { return !!newWeapon; }))
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["filter"])(function (newWeapon) { return !!newWeapon; }))
             .subscribe(function (newWeapon) {
             if (newWeapon === -1) {
                 _this.weapons.splice(weaponIndex, 1);
             }
             else {
+                if (!!!newWeapon.damageCategory) {
+                    newWeapon.damageCategory = Object(_dungeon_dragons_model_inventory_weapons_utils__WEBPACK_IMPORTED_MODULE_5__["getDamageCategoryByType"])(newWeapon.damageType);
+                }
                 _this.weapons[weaponIndex] = newWeapon;
             }
             _this.update.emit(_this.weapons.slice());
@@ -2364,16 +2494,21 @@ var PlayerInventoryWeaponsComponent = /** @class */ (function (_super) {
     };
     PlayerInventoryWeaponsComponent.prototype.openWeaponCreationDialog = function () {
         var _this = this;
-        var weaponEditionDialog = this.dialog.open(_weapon_edition_dialog_weapon_edition_dialog_component__WEBPACK_IMPORTED_MODULE_7__["WeaponEditionDialogComponent"]);
+        var weaponEditionDialog = this.dialog.open(_weapon_edition_dialog_weapon_edition_dialog_component__WEBPACK_IMPORTED_MODULE_9__["WeaponEditionDialogComponent"], {
+            maxWidth: this.dialogMaxWidth
+        });
         weaponEditionDialog.afterClosed()
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["filter"])(function (newWeapon) { return !!newWeapon; }))
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["filter"])(function (newWeapon) { return !!newWeapon; }))
             .subscribe(function (newWeapon) {
+            if (!!!newWeapon.damageCategory) {
+                newWeapon.damageCategory = Object(_dungeon_dragons_model_inventory_weapons_utils__WEBPACK_IMPORTED_MODULE_5__["getDamageCategoryByType"])(newWeapon.damageType);
+            }
             _this.update.emit(_this.weapons.concat([newWeapon]));
         });
     };
     PlayerInventoryWeaponsComponent.prototype.openWeaponRollDialog = function (event, weapon) {
         event.stopPropagation();
-        var weaponRollDialog = this.dialog.open(_weapon_roll_dialog_weapon_roll_dialog_component__WEBPACK_IMPORTED_MODULE_8__["WeaponRollDialogComponent"], {
+        var weaponRollDialog = this.dialog.open(_weapon_roll_dialog_weapon_roll_dialog_component__WEBPACK_IMPORTED_MODULE_10__["WeaponRollDialogComponent"], {
             autoFocus: false,
             data: { player: this.player, weapon: weapon }
         });
@@ -2402,7 +2537,7 @@ var PlayerInventoryWeaponsComponent = /** @class */ (function (_super) {
             _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_0__["BreakpointObserver"]])
     ], PlayerInventoryWeaponsComponent);
     return PlayerInventoryWeaponsComponent;
-}(_core__WEBPACK_IMPORTED_MODULE_6__["AbstractHandsetObserver"]));
+}(_core__WEBPACK_IMPORTED_MODULE_8__["AbstractHandsetObserver"]));
 
 
 
@@ -2415,7 +2550,7 @@ var PlayerInventoryWeaponsComponent = /** @class */ (function (_super) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"weaponForm\">\n\n  <h1 mat-dialog-title>Arme</h1>\n\n  <mat-dialog-content fxLayout=\"row wrap\">\n    <mat-form-field fxFlex\n                    fxFlex.xs=\"100\">\n      <input matInput\n             formControlName=\"name\"\n             placeholder=\"Nom de l'arme\"\n             required>\n    </mat-form-field>\n\n    <mat-form-field fxFlex\n                    fxFlex.xs=\"100\">\n      <mat-select formControlName=\"range\"\n                  placeholder=\"Portée\"\n                  required>\n        <mat-option *ngFor=\"let range of weaponRanges | enumKeyValue\"\n                    [value]=\"range.key\">{{ range.value }}</mat-option>\n      </mat-select>\n    </mat-form-field>\n\n    <mat-form-field fxFlex\n                    fxFlex.xs=\"50\">\n      <input matInput\n             formControlName=\"touch\"\n             placeholder=\"Toucher\"\n             type=\"number\"\n             min=\"0\"\n             required>\n    </mat-form-field>\n\n    <mat-form-field fxFlex\n                    fxFlex.xs=\"50\">\n      <input matInput\n             formControlName=\"damage\"\n             placeholder=\"Dégâts\"\n             type=\"number\"\n             min=\"0\"\n             required>\n    </mat-form-field>\n\n    <mat-form-field fxFlex\n                    fxFlex.xs=\"100\">\n      <mat-select formControlName=\"characteristic\"\n                  placeholder=\"Caractéristique\"\n                  required>\n        <mat-option *ngFor=\"let characteristic of characteristics | enumKeyValue\"\n                    [value]=\"characteristic.key\">{{ characteristic.value }}</mat-option>\n      </mat-select>\n    </mat-form-field>\n\n    <mat-form-field fxFlex=\"100\">\n      <textarea matInput\n                formControlName=\"special\"\n                placeholder=\"Spécial\"\n                matTextareaAutosize></textarea>\n    </mat-form-field>\n  </mat-dialog-content>\n\n  <mat-dialog-actions fxLayout=\"row wrap\">\n    <div fxFlex=\"100\"\n         fxLayoutAlign=\"end\">\n      <button *ngIf=\"weapon\"\n              mat-button\n              color=\"warn\"\n              [mat-dialog-close]=\"-1\">\n        <mat-icon>delete</mat-icon>\n        Supprimer\n      </button>\n      <button mat-button\n              color=\"primary\"\n              [mat-dialog-close]=\"weaponForm.getRawValue()\"\n              [disabled]=\"weaponForm.invalid\">\n        <mat-icon>save</mat-icon>\n        Enregistrer\n      </button>\n    </div>\n  </mat-dialog-actions>\n\n</form>\n"
+module.exports = "<form [formGroup]=\"weaponForm\">\n\n  <h1 mat-dialog-title>Arme</h1>\n\n  <mat-dialog-content fxLayout=\"row wrap\">\n    <mat-form-field fxFlex=\"40\"\n                    fxFlex.xs=\"100\">\n      <input matInput\n             formControlName=\"name\"\n             placeholder=\"Nom de l'arme\"\n             required>\n    </mat-form-field>\n\n    <mat-form-field fxFlex=\"30\"\n                    fxFlex.xs=\"100\">\n      <mat-select formControlName=\"range\"\n                  placeholder=\"Portée\"\n                  required>\n        <mat-option *ngFor=\"let range of weaponRanges | enumKeyValue\"\n                    [value]=\"range.key\">{{ range.value }}</mat-option>\n      </mat-select>\n    </mat-form-field>\n\n    <mat-form-field fxFlex=\"30\"\n                    fxFlex.xs=\"100\">\n      <mat-select formControlName=\"characteristic\"\n                  placeholder=\"Caractéristique\"\n                  required>\n        <mat-option *ngFor=\"let characteristic of characteristics | enumKeyValue\"\n                    [value]=\"characteristic.key\">{{ characteristic.value }}</mat-option>\n      </mat-select>\n    </mat-form-field>\n\n    <mat-form-field fxFlex=\"20\"\n                    fxFlex.xs=\"50\">\n      <input matInput\n             formControlName=\"touch\"\n             placeholder=\"Toucher\"\n             type=\"number\"\n             min=\"0\"\n             required>\n    </mat-form-field>\n\n    <mat-form-field fxFlex=\"20\"\n                    fxFlex.xs=\"50\">\n      <input matInput\n             formControlName=\"damage\"\n             placeholder=\"Dégâts\"\n             type=\"number\"\n             min=\"0\"\n             required>\n    </mat-form-field>\n\n    <mat-form-field fxFlex=\"30\"\n                    fxFlex.xs=\"100\">\n      <mat-select formControlName=\"damageType\"\n                  placeholder=\"Type de dégâts\"\n                  required>\n        <mat-option *ngFor=\"let damageType of damageTypes | enumKeyValue\"\n                    [value]=\"damageType.key\">{{ damageType.value }}</mat-option>\n      </mat-select>\n    </mat-form-field>\n\n    <mat-form-field fxFlex=\"30\"\n                    fxFlex.xs=\"100\">\n      <mat-select formControlName=\"damageCategory\"\n                  placeholder=\"Catégorie\">\n        <mat-option *ngFor=\"let damageCategory of damageCategories | enumKeyValue\"\n                    [value]=\"damageCategory.key\">{{ damageCategory.value }}</mat-option>\n      </mat-select>\n    </mat-form-field>\n\n    <mat-form-field fxFlex=\"100\">\n      <textarea matInput\n                formControlName=\"special\"\n                placeholder=\"Spécial\"\n                matTextareaAutosize></textarea>\n    </mat-form-field>\n  </mat-dialog-content>\n\n  <mat-dialog-actions fxLayout=\"row wrap\">\n    <div fxFlex=\"100\"\n         fxLayoutAlign=\"end\">\n      <button *ngIf=\"weapon\"\n              mat-button\n              color=\"warn\"\n              [mat-dialog-close]=\"-1\">\n        <mat-icon>delete</mat-icon>\n        Supprimer\n      </button>\n      <button mat-button\n              color=\"primary\"\n              [mat-dialog-close]=\"weaponForm.getRawValue()\"\n              [disabled]=\"weaponForm.invalid\">\n        <mat-icon>save</mat-icon>\n        Enregistrer\n      </button>\n    </div>\n  </mat-dialog-actions>\n\n</form>\n"
 
 /***/ }),
 
@@ -2444,7 +2579,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "../../node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "../../node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _dungeon_dragons_model_inventory__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @dungeon-dragons-model/inventory */ "../../libs/dungeon-dragons-model/src/lib/inventory/index.ts");
-/* harmony import */ var _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @dungeon-dragons-model/player/characteristic.enum */ "../../libs/dungeon-dragons-model/src/lib/player/characteristic.enum.ts");
+/* harmony import */ var _dungeon_dragons_model_inventory_damage_category_enum__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @dungeon-dragons-model/inventory/damage-category.enum */ "../../libs/dungeon-dragons-model/src/lib/inventory/damage-category.enum.ts");
+/* harmony import */ var _dungeon_dragons_model_inventory_damage_type_enum__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @dungeon-dragons-model/inventory/damage-type.enum */ "../../libs/dungeon-dragons-model/src/lib/inventory/damage-type.enum.ts");
+/* harmony import */ var _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @dungeon-dragons-model/player/characteristic.enum */ "../../libs/dungeon-dragons-model/src/lib/player/characteristic.enum.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2462,16 +2599,22 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
+
 var WeaponEditionDialogComponent = /** @class */ (function () {
     function WeaponEditionDialogComponent(formBuilder, data) {
         this.weapon = null;
         this.weaponRanges = _dungeon_dragons_model_inventory__WEBPACK_IMPORTED_MODULE_3__["WeaponRange"];
-        this.characteristics = _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_4__["Characteristic"];
+        this.characteristics = _dungeon_dragons_model_player_characteristic_enum__WEBPACK_IMPORTED_MODULE_6__["Characteristic"];
+        this.damageTypes = _dungeon_dragons_model_inventory_damage_type_enum__WEBPACK_IMPORTED_MODULE_5__["DamageType"];
+        this.damageCategories = _dungeon_dragons_model_inventory_damage_category_enum__WEBPACK_IMPORTED_MODULE_4__["DamageCategory"];
         this.weaponForm = formBuilder.group({
             name: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             range: ['ENGAGED', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             touch: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             damage: [0, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            damageType: [null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            damageCategory: [null],
             characteristic: ['STRENGTH', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             special: ['']
         });
@@ -2508,7 +2651,7 @@ var WeaponEditionDialogComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div mat-dialog-title>{{weapon.name}}</div>\n\n<mat-dialog-content>\n  <div class=\"roll-result\">\n    Résultat du jet = <span class=\"final-result\">{{result.result}}</span>\n    <ul class=\"calcul\">\n      <li [class.critical]=\"result.rolled[0] === 20\">{{result.rolled}} (jet)</li>\n      <li>{{characModifier | modifier:true}} ({{weapon.characteristic | enumValue:characteristics}})</li>\n      <li>{{weapon.touch | modifier:true}} (Bonus de l'arme)</li>\n      <li>{{player.bonus | modifier:true}} (Bonus de maîtrise)</li>\n    </ul>\n  </div>\n\n  <div class=\"roll-damage\">\n    Dégâts = <span class=\"final-result\">{{damage}}</span>\n    <ul class=\"calcul\">\n      <li>{{weapon.damage | modifier:true}} (Dégâts de l'arme)</li>\n      <li>{{characModifier | modifier:true}} ({{weapon.characteristic | enumValue:characteristics}})</li>\n      <li>{{player.bonus | modifier:true}} (Bonus de maîtrise)</li>\n    </ul>\n  </div>\n</mat-dialog-content>\n\n<mat-dialog-actions fxLayout=\"row wrap\">\n  <div fxFlex=\"100\"\n       fxLayoutAlign=\"end\">\n    <button mat-raised-button\n            color=\"primary\"\n            (click)=\"roll()\">\n      <span class=\"fas fa-dice-d20\"></span>\n      Lancer\n    </button>\n  </div>\n</mat-dialog-actions>\n"
+module.exports = "<div mat-dialog-title>{{weapon.name}}</div>\n\n<mat-dialog-content>\n  <div class=\"roll-result\">\n    Résultat du jet = <span class=\"final-result\">{{result.result}}</span>\n    <ul class=\"calcul\">\n      <li [class.critical]=\"result.rolled[0] === 20\">{{result.rolled}} (jet)</li>\n      <li>{{characModifier | modifier:true}} ({{weapon.characteristic | enumValue:characteristics}})</li>\n      <li>{{weapon.touch | modifier:true}} (Bonus au toucher de l'arme)</li>\n      <li>{{player.bonus | modifier:true}} (Bonus de maîtrise)</li>\n    </ul>\n  </div>\n\n  <div class=\"roll-damage\">\n    Dégâts = <span class=\"final-result\">{{damage}}</span>\n    <ul class=\"calcul\">\n      <li>{{weapon.damage | modifier:true}} (Dégâts de l'arme)</li>\n      <li>{{characModifier | modifier:true}} ({{weapon.characteristic | enumValue:characteristics}})</li>\n      <li>{{player.bonus | modifier:true}} (Bonus de maîtrise)</li>\n      <li *ngIf=\"weapon.damageCategory === 'MAGICAL'\">{{player.magicalDamage | modifier:true}} (Dégâts magiques)</li>\n      <li *ngIf=\"weapon.damageCategory === 'PHYSICAL'\">{{player.physicalDamage | modifier:true}} (Dégâts physiques)</li>\n    </ul>\n  </div>\n</mat-dialog-content>\n\n<mat-dialog-actions fxLayout=\"row wrap\">\n  <div fxFlex=\"100\"\n       fxLayoutAlign=\"end\">\n    <button mat-raised-button\n            color=\"primary\"\n            (click)=\"roll()\">\n      <span class=\"fas fa-dice-d20\"></span>\n      Lancer\n    </button>\n  </div>\n</mat-dialog-actions>\n"
 
 /***/ }),
 
@@ -2575,9 +2718,12 @@ var WeaponRollDialogComponent = /** @class */ (function () {
         var bonusModifier = Object(_dungeon_dragons_model_player_characteristics_utils__WEBPACK_IMPORTED_MODULE_3__["modifierToString"])(this.player.bonus, true);
         var touchModifier = Object(_dungeon_dragons_model_player_characteristics_utils__WEBPACK_IMPORTED_MODULE_3__["modifierToString"])(this.weapon.touch, true);
         var rollString = "1d20" + characteristicModifierString + touchModifier + bonusModifier;
-        this.logger.log(rollString);
         this.result = this.diceRoller.roll(rollString);
-        this.damage = this.weapon.damage + this.characModifier + this.player.bonus;
+        this.logger.log(rollString);
+        var bonusDamage = this.weapon.damageCategory === 'MAGICAL'
+            ? this.player.magicalDamage
+            : this.player.physicalDamage;
+        this.damage = this.weapon.damage + this.characModifier + this.player.bonus + bonusDamage;
     };
     WeaponRollDialogComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -3529,6 +3675,8 @@ var TESTING_PLAYER = {
     race: 'DRAGONBORN',
     level: 1,
     bonus: 0,
+    physicalDamage: 0,
+    magicalDamage: 0,
     characteristics: {
         strength: { characteristic: 'STRENGTH', value: 10, savingThrow: false },
         dexterity: { characteristic: 'DEXTERITY', value: 10, savingThrow: false },
